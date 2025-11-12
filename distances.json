@@ -1,0 +1,432 @@
+[
+  {
+    "name": "MOB",
+    "distances": [
+      {
+        "parent": "MX",
+        "child": "CGE",
+        "distance": 0.65
+      },
+      {
+        "parent": "CGE",
+        "child": "VUAR",
+        "distance": 0.35
+      },
+      {
+        "parent": "VUAR",
+        "child": "BEMM",
+        "distance": 0.51
+      },
+      {
+        "parent": "BEMM",
+        "child": "COLD",
+        "distance": 0.24
+      },
+      {
+        "parent": "COLD",
+        "child": "CHAL",
+        "distance": 0.4
+      },
+      {
+        "parent": "CHAL",
+        "child": "PLAC",
+        "distance": 0.51
+      },
+      {
+        "parent": "PLAC",
+        "child": "FON",
+        "distance": 0.62
+      },
+      {
+        "parent": "FON",
+        "child": "CHER",
+        "distance": 1.01
+      },
+      {
+        "parent": "CHER",
+        "child": "SONZ",
+        "distance": 1.18
+      },
+      {
+        "parent": "SONZ",
+        "child": "CABY",
+        "distance": 1.68
+      },
+      {
+        "parent": "CABY",
+        "child": "SDY",
+        "distance": 2.05
+      },
+      {
+        "parent": "SDY",
+        "child": "AVA",
+        "distance": 1.65
+      },
+      {
+        "parent": "AVA",
+        "child": "JOR",
+        "distance": 1.78
+      },
+      {
+        "parent": "JOR",
+        "child": "CASE",
+        "distance": 2.56
+      },
+      {
+        "parent": "CASE",
+        "child": "ALLI",
+        "distance": 1.78
+      },
+      {
+        "parent": "ALLI",
+        "child": "SCI",
+        "distance": 3.46
+      },
+      {
+        "parent": "SCI",
+        "child": "MTB",
+        "distance": 1.71
+      },
+      {
+        "parent": "MTB",
+        "child": "TINE",
+        "distance": 1.95
+      },
+      {
+        "parent": "TINE",
+        "child": "ROSI",
+        "distance": 4.14
+      },
+      {
+        "parent": "ROSI",
+        "child": "CHAU",
+        "distance": 1.15
+      },
+      {
+        "parent": "CHAU",
+        "child": "CHOE",
+        "distance": 3.29
+      },
+      {
+        "parent": "CHOE",
+        "child": "PALZ",
+        "distance": 1
+      },
+      {
+        "parent": "PALZ",
+        "child": "GRAC",
+        "distance": 0.87
+      },
+      {
+        "parent": "GRAC",
+        "child": "COMS",
+        "distance": 1.59
+      },
+      {
+        "parent": "COMS",
+        "child": "FLED",
+        "distance": 1.28
+      },
+      {
+        "parent": "FLED",
+        "child": "ROU",
+        "distance": 1.91
+      },
+      {
+        "parent": "ROU",
+        "child": "SAAN",
+        "distance": 4.04
+      },
+      {
+        "parent": "SAAN",
+        "child": "GST",
+        "distance": 2.4
+      },
+      {
+        "parent": "GST",
+        "child": "GRUB",
+        "distance": 2.51
+      },
+      {
+        "parent": "GRUB",
+        "child": "SCR",
+        "distance": 2.58
+      },
+      {
+        "parent": "SCR",
+        "child": "SAMO",
+        "distance": 2.21
+      },
+      {
+        "parent": "SAMO",
+        "child": "OES",
+        "distance": 3.83
+      },
+      {
+        "parent": "OES",
+        "child": "HALN",
+        "distance": 2.64
+      },
+      {
+        "parent": "HALN",
+        "child": "ZW",
+        "distance": 2.9
+      },
+      {
+        "parent": "ZW",
+        "child": "BLB",
+        "distance": 1.65
+      },
+      {
+        "parent": "BLB",
+        "child": "STOI",
+        "distance": 2.89
+      },
+      {
+        "parent": "STOI",
+        "child": "STST",
+        "distance": 1.78
+      },
+      {
+        "parent": "STST",
+        "child": "MATE",
+        "distance": 2.17
+      },
+      {
+        "parent": "MATE",
+        "child": "BODE",
+        "distance": 2.82
+      },
+      {
+        "parent": "BODE",
+        "child": "LENK",
+        "distance": 1.55
+      },
+      {
+        "parent": "ZW",
+        "child": "GRU",
+        "distance": 3.08
+      },
+      {
+        "parent": "GRU",
+        "child": "WBA",
+        "distance": 2.94
+      },
+      {
+        "parent": "WBA",
+        "child": "BOLT",
+        "distance": 2.98
+      },
+      {
+        "parent": "BOLT",
+        "child": "ENGE",
+        "distance": 3.28
+      },
+      {
+        "parent": "ENGE",
+        "child": "OIS",
+        "distance": 1.73
+      },
+      {
+        "parent": "OIS",
+        "child": "WG",
+        "distance": 3.25
+      },
+      {
+        "parent": "WG",
+        "child": "DR",
+        "distance": 1.54
+      },
+      {
+        "parent": "DR",
+        "child": "RGD",
+        "distance": 2.31
+      },
+      {
+        "parent": "RGD",
+        "child": "ERLB",
+        "distance": 2.5
+      },
+      {
+        "parent": "ERLB",
+        "child": "OE",
+        "distance": 1.96
+      },
+      {
+        "parent": "OE",
+        "child": "BH",
+        "distance": 2.18
+      },
+      {
+        "parent": "BH",
+        "child": "WM",
+        "distance": 2.61
+      },
+      {
+        "parent": "WM",
+        "child": "EIF",
+        "distance": 1.05
+      },
+      {
+        "parent": "EIF",
+        "child": "LAT",
+        "distance": 1.04
+      },
+      {
+        "parent": "LAT",
+        "child": "SPAB",
+        "distance": 1.57
+      },
+      {
+        "parent": "SPAB",
+        "child": "SP",
+        "distance": 0.89
+      },
+      {
+        "parent": "SP",
+        "child": "FS",
+        "distance": 2.02
+      },
+      {
+        "parent": "FS",
+        "child": "KH",
+        "distance": 3.44
+      },
+      {
+        "parent": "KH",
+        "child": "LBAD",
+        "distance": 1.3
+      },
+      {
+        "parent": "LBAD",
+        "child": "LSS",
+        "distance": 1.79
+      },
+      {
+        "parent": "LSS",
+        "child": "DAE",
+        "distance": 3.52
+      },
+      {
+        "parent": "DAE",
+        "child": "IW",
+        "distance": 4.01
+      },
+      {
+        "parent": "IW",
+        "child": "IO",
+        "distance": 1.93
+      }
+    ]
+  },
+  {
+    "name": "MVR-ce",
+    "distances": [
+      {
+        "parent": "BLON",
+        "child": "CHAN",
+        "distance": 0.97
+      },
+      {
+        "parent": "CHAN",
+        "child": "CHCO",
+        "distance": 1.02
+      },
+      {
+        "parent": "CHCO",
+        "child": "CABY",
+        "distance": 0.96
+      },
+      {
+        "parent": "VV",
+        "child": "BOSQ",
+        "distance": 0.53
+      },
+      {
+        "parent": "BOSQ",
+        "child": "VVVI",
+        "distance": 0.97
+      },
+      {
+        "parent": "VVVI",
+        "child": "CLIE",
+        "distance": 0.27
+      },
+      {
+        "parent": "CLIE",
+        "child": "HTV",
+        "distance": 0.69
+      },
+      {
+        "parent": "HTV",
+        "child": "CHTV",
+        "distance": 0.56
+      },
+      {
+        "parent": "CHTV",
+        "child": "STLE",
+        "distance": 0.58
+      },
+      {
+        "parent": "STLE",
+        "child": "STLV",
+        "distance": 0.42
+      },
+      {
+        "parent": "STLV",
+        "child": "CHIZ",
+        "distance": 0.49
+      },
+      {
+        "parent": "CHIZ",
+        "child": "CHBL",
+        "distance": 0.84
+      },
+      {
+        "parent": "CHBL",
+        "child": "BLON",
+        "distance": 0.37
+      },
+      {
+        "parent": "BLON",
+        "child": "PRLN",
+        "distance": 0.45
+      },
+      {
+        "parent": "PRLN",
+        "child": "TUS",
+        "distance": 0.77
+      },
+      {
+        "parent": "TUS",
+        "child": "CHEV",
+        "distance": 0.41
+      },
+      {
+        "parent": "CHEV",
+        "child": "BCHX",
+        "distance": 0.36
+      },
+      {
+        "parent": "BCHX",
+        "child": "FAY",
+        "distance": 0.72
+      },
+      {
+        "parent": "FAY",
+        "child": "OND",
+        "distance": 0.74
+      },
+      {
+        "parent": "OND",
+        "child": "LAL",
+        "distance": 0.64
+      },
+      {
+        "parent": "LAL",
+        "child": "PLEI",
+        "distance": 0.7
+      }
+    ]
+  }
+]

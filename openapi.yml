@@ -1,0 +1,215 @@
+openapi: 3.1.1
+info:
+  title: Train routing & analytics API
+  version: 1.0.0
+  contact:
+    name: Nicolas Girardet
+    email: n.girardet@mob.ch
+    url: https://github.com/montreux-oberland-bernois/defi-fullstack
+  description: >
+    API pour router un train d'une station A à B sur un réseau, calculer la
+    distance parcourue et fournir des statistiques agrégées par code analytique.
+servers:
+  - url: /api/v1
+    description: Version 1 de l'API
+security:
+  - bearerAuth: []
+tags:
+  - name: Routing
+    description: Calcul des trajets
+  - name: Analytics
+    description: Statistiques de distances par code analytique
+
+paths:
+  /routes:
+    post:
+      tags: [Routing]
+      description: Calculer un trajet A → B
+      operationId: calculerRoute
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RouteRequest'
+            examples:
+              default:
+                value:
+                  fromStationId: "MX"
+                  toStationId: "ZW"
+                  analyticCode: "ANA-123"
+      responses:
+        '201':
+          description: Trajet calculé
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Route'
+        '400':
+          description: Requête invalide
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Données non valides (ex. station inconnue, réseau non connexe)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /stats/distances:
+    get:
+      tags: [Analytics]
+      summary: >
+        BONUS : Distances agrégées par code analytique
+      description: >
+        Retourne la somme des distances parcourues par code analytique sur une
+        période donnée. Si aucune période n’est fournie, utilise la période
+        complète disponible.
+      operationId: getAnalyticDistances
+      parameters:
+        - name: from
+          in: query
+          required: false
+          description: Date de début (inclus)
+          schema:
+            type: string
+            format: date
+        - name: to
+          in: query
+          required: false
+          description: Date de fin (inclus)
+          schema:
+            type: string
+            format: date
+        - name: groupBy
+          in: query
+          required: false
+          description: Optionnel, groupement additionnel
+          schema:
+            type: string
+            enum: [day, month, year, none]
+            default: none
+      responses:
+        '200':
+          description: Agrégations de distances
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyticDistanceList'
+        '400':
+          description: Paramètres invalides (ex. from > to)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    RouteRequest:
+      type: object
+      properties:
+        fromStationId:
+          type: string
+          description: Station de départ
+        toStationId:
+          type: string
+          description: Station d’arrivée
+        analyticCode:
+          type: string
+          description: Code analytique associé au trajet
+      required: [fromStationId, toStationId, analyticCode]
+
+    Route:
+      type: object
+      properties:
+        id:
+          type: string
+        fromStationId:
+          type: string
+        toStationId:
+          type: string
+        analyticCode:
+          type: string
+        distanceKm:
+          type: number
+          format: double
+          minimum: 0
+        path:
+          type: array
+          description: Chemin calculé sous forme de liste ordonnée de stations
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - fromStationId
+        - toStationId
+        - analyticCode
+        - distanceKm
+        - path
+        - createdAt
+
+    AnalyticDistance:
+      type: object
+      properties:
+        analyticCode:
+          type: string
+        totalDistanceKm:
+          type: number
+          format: double
+          minimum: 0
+        periodStart:
+          type: string
+          format: date
+        periodEnd:
+          type: string
+          format: date
+        group:
+          type: string
+          description: Unité de groupement si groupBy est utilisé (ex. 2025-11 pour month)
+      required: [analyticCode, totalDistanceKm]
+
+    AnalyticDistanceList:
+      type: object
+      properties:
+        from:
+          type: string
+          format: date
+          nullable: true
+        to:
+          type: string
+          format: date
+          nullable: true
+        groupBy:
+          type: string
+          enum: [day, month, year, none]
+          default: none
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalyticDistance'
+      required: [items]
+
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Code d’erreur applicatif
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            type: string
+      required: [message]
