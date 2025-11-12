@@ -60,7 +60,7 @@ Lorsque tu as terminé, envoie à n.girardet[at]mob[point]ch, ton dossier de can
 ## Et après ?
 Nous procéderons à une revue de ton code et nous te contacterons pour t'informer de la suite.
 
-> 🚫 N'envoie pas de fichiers volumineux (ex : 100 Mo) par e-mail
+> 🚫 N'envoie pas de fichiers volumineux (ex : 30 Mo) par e-mail
 
 ---
 
@@ -86,9 +86,7 @@ Nous procéderons à une revue de ton code et nous te contacterons pour t'inform
   - Tests avec PHPUnit + rapport de couverture.  
 
 - **Frontend**
-  - VueJS 3
-  - Vuetify 3  
-  - TypeScript
+  - TypeScript 5 obligatoire.
   - Node.js >=22.12.0
   - Interface utilisateur pour :  
     - Créer un trajet (station A → station B).  
