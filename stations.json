@@ -276,7 +276,7 @@
   },
   {
     "id": 56,
-    "shortName": "PRLZ",
+    "shortName": "PRLN",
     "longName": "Prélaz-sur-Blonay"
   },
   {
@@ -391,12 +391,12 @@
   },
   {
     "id": 86,
-    "shortName": "_Grubenwald",
+    "shortName": "GRU",
     "longName": "Grubenwald"
   },
   {
     "id": 87,
-    "shortName": "_Weissenbach",
+    "shortName": "WBA",
     "longName": "Weissenbach"
   },
   {
@@ -406,27 +406,27 @@
   },
   {
     "id": 89,
-    "shortName": "_Enge im Simmental",
+    "shortName": "ENGE",
     "longName": "Enge im Simmental"
   },
   {
     "id": 90,
-    "shortName": "_Oberwil im Simmental",
+    "shortName": "OIS",
     "longName": "Oberwil im Simmental"
   },
   {
     "id": 91,
-    "shortName": "_Weissenburg",
+    "shortName": "WG",
     "longName": "Weissenburg"
   },
   {
     "id": 92,
-    "shortName": "_Därstetten",
+    "shortName": "DR",
     "longName": "Därstetten"
   },
   {
     "id": 93,
-    "shortName": "_Ringoldingen",
+    "shortName": "RGD",
     "longName": "Ringoldingen"
   },
   {
@@ -441,7 +441,7 @@
   },
   {
     "id": 96,
-    "shortName": "_Burgholz",
+    "shortName": "BH",
     "longName": "Burgholz"
   },
   {
@@ -451,17 +451,17 @@
   },
   {
     "id": 98,
-    "shortName": "_Eifeld",
+    "shortName": "EIF",
     "longName": "Eifeld"
   },
   {
     "id": 99,
-    "shortName": "_Lattigen bei Spiez",
+    "shortName": "LAT",
     "longName": "Lattigen bei Spiez"
   },
   {
     "id": 100,
-    "shortName": "_Spiez (Abzw)",
+    "shortName": "SPAB",
     "longName": "Spiez (Abzw)"
   },
   {
@@ -471,27 +471,27 @@
   },
   {
     "id": 102,
-    "shortName": "_Faulensee",
+    "shortName": "FS",
     "longName": "Faulensee"
   },
   {
     "id": 103,
-    "shortName": "_Krattighalde",
+    "shortName": "KH",
     "longName": "Krattighalde"
   },
   {
     "id": 104,
-    "shortName": "_Leissigbad (Agl)",
+    "shortName": "LBAD",
     "longName": "Leissigbad (Agl)"
   },
   {
     "id": 105,
-    "shortName": "_Leissigen",
+    "shortName": "LSS",
     "longName": "Leissigen"
   },
   {
     "id": 106,
-    "shortName": "_Därligen",
+    "shortName": "DAE",
     "longName": "Därligen"
   },
   {
