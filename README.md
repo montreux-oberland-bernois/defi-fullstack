@@ -23,8 +23,8 @@ Tu es invité à démontrer ta capacité à :
 
 ## 🧩 Notre environnement
 Nous produisons des applications web modernes, sécurisées et performantes, en utilisant principalement :
-- **Backend** : PHP 8 (Symfony et CakePHP)
-- **Frontend** : VueJS 3 + Vuetify 3 + TypeScript
+- **Backend** : PHP 8 (Symfony 7 et CakePHP 5)
+- **Frontend** : Vue.js 3 + Vuetify 3 + TypeScript
 - **Tests** : PHPUnit, Vitest, Jest
 - **Linter** : PHPCS, ESLint, Prettier
 - **UI/UX** : Storybook
