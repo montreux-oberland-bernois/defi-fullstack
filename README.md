@@ -101,6 +101,7 @@ Nous procéderons à une revue de ton code et nous te contacterons pour t'inform
 ---
 
 ## 🔄 CI/CD complet
+
 Voici notre point de vue de la représentation d'un CI/CD complet :
 - Build : images backend/frontend
 - Qualité : lint + tests + coverage (fail si seuils non atteints)
