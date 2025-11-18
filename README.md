@@ -16,7 +16,6 @@ Tu es invité à démontrer ta capacité à :
 - Appliquer des pratiques comme **l’analyse statique**, le **TDD**, le **DDD** et l’**intégration/déploiement continus**
 - Produire un code **propre, maintenable et réfléchi**, comme si tu faisais déjà partie de l’équipe
 
-
 > 💡 Conseil : documente tes choix, structure ton code et montre-nous comment tu raisonnes. C’est tout aussi important que le résultat final.
 
 ---
@@ -31,6 +30,8 @@ Nous produisons des applications web modernes, sécurisées et performantes, en 
 - **Base de données** : PostgreSQL ou MariaDB
 - **Infrastructure** : Docker, Docker Compose, TeamCity (CI/CD), Gitlab (code versioning)
 - **Méthodologies** : TDD, DDD, XP
+
+> 💡 Conseil : inspire-toi de nos pratiques et de nos outils.
 
 ---
 
@@ -49,13 +50,21 @@ Tu peux choisir de persister les saisies des utilisateurs, cela t'aidera à comp
 
 Il se peut que tu aies des questions ou des incertitudes sur la compréhension du besoin, dans ce cas, tu es libre de faire des hypothèses raisonnables et de les documenter.
 
-> 💡 Conseil : Applique le principe fondamental de qualité du craftsmanship.
+> 💡 Conseil : applique le principe fondamental de [qualité du craftsmanship](https://fr.wikipedia.org/wiki/Software_craftsmanship#Fondamentalement_:_un_retour_non_r%C3%A9f%C3%A9renc%C3%A9_%C3%A0_XP).
 
 ## Livrables attendus
 Lorsque tu as terminé, envoie à n.girardet[at]mob[point]ch, ton dossier de candidature complet ainsi qu'un lien vers le projet contenant :
 - Le projet prêt à déployer, au format que tu préfères : un repo GitHub avec un docker-compose, une image publiée dans un registre, un fichier zip dans une release GitHub...
 - Les instructions de déploiement claires
 - L'accès au repository du code source, y compris l'historique des commits
+
+> ⚠️ Assure-toi qu'un lien vers ton projet est visible et actif dans ton e-mail. 👉 Nous ne traiterons pas les dossiers de candidatures avant d'avoir vu le code.
+
+## ⏳ Durée du défi
+
+Tu n’as aucune limite de temps pour réaliser ce défi. Avance à ton rythme, prends le temps de réfléchir et de coder comme tu le souhaites. Ce repository restera ouvert tant que nous n’aurons pas trouvé la bonne personne pour rejoindre l’équipe. Une fois que ce sera le cas, nous le fermerons.
+
+> 💡 Même si la vitesse n’est pas un critère, nous examinerons les candidatures dans l’ordre où elles nous parviennent.
 
 ## Et après ?
 Nous procéderons à une revue de ton code et nous te contacterons pour t'informer de la suite.
@@ -96,7 +105,7 @@ Nous procéderons à une revue de ton code et nous te contacterons pour t'inform
   - Docker/Docker Compose pour orchestrer backend, frontend, base de données et reverse proxy (si nécessaire).  
   - Déploiement en une commande (`docker compose up -d`).  
 
-> 💡 Conseil : Documente tes choix dans une documentation.
+> 💡 Conseil : documente tes choix dans une documentation.
 
 ---
 
@@ -108,6 +117,10 @@ Voici notre point de vue de la représentation d'un CI/CD complet :
 - Sécurité : SAST/DAST (ex: phpstan, npm audit, Trivy)
 - Release : tagging sémantique ou calendaire, changelog
 - Delivery : push images vers registry, déploiement automatisé (Compose ou SSH)
+
+## 🤖 Code généré par IA
+
+Tu es libre d’utiliser les outils qui te semblent les plus adaptés pour réaliser ce défi. Cela inclut bien sûr le code généré par des intelligences artificielles. Nous savons que ces outils font partie du quotidien des développeurs, et nous voulons voir comment tu es capable de les intégrer intelligemment dans ta solution.
 
 ## 🎁 Les points Bonus
 - Implémenter un algorithme de routage (ex. Dijkstra) pour calculer la distance entre deux stations.
@@ -121,7 +134,7 @@ Voici notre point de vue de la représentation d'un CI/CD complet :
 - Frontend : UX propre, typé en TypeScript, tests présents
 - CI/CD : pipeline fiable, scans basiques de sécurité, images publiées
 - Sécurité : HTTPS, auth, headers, gestion des secrets
-- Qualité : code lisible, commits structurés, architecture cohérente
+- Qualité : code lisible, commits atomiques, architecture cohérente
 
 ---
 ## 🚀 À toi de jouer !
