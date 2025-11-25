@@ -9,6 +9,11 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class CalculateRouteRequest extends FormRequest
 {
     /**
+     * Codes analytiques valides pour catégoriser les trajets.
+     */
+    public const VALID_ANALYTIC_CODES = ['FRET', 'PASS', 'MAINT', 'TEST'];
+
+    /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
@@ -26,7 +31,7 @@ class CalculateRouteRequest extends FormRequest
         return [
             'fromStationId' => 'required|string|max:10',
             'toStationId' => 'required|string|max:10',
-            'analyticCode' => 'required|string|max:50',
+            'analyticCode' => 'required|string|in:'.implode(',', self::VALID_ANALYTIC_CODES),
         ];
     }
 
@@ -46,7 +51,7 @@ class CalculateRouteRequest extends FormRequest
             'toStationId.max' => "La station d'arrivée ne doit pas dépasser :max caractères",
             'analyticCode.required' => 'Le code analytique est obligatoire',
             'analyticCode.string' => 'Le code analytique doit être une chaîne de caractères',
-            'analyticCode.max' => 'Le code analytique ne doit pas dépasser :max caractères',
+            'analyticCode.in' => 'Le code analytique doit être l\'un des suivants : '.implode(', ', self::VALID_ANALYTIC_CODES),
         ];
     }
 

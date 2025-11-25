@@ -15,6 +15,13 @@ const loading = ref(false)
 const error = ref<string | null>(null)
 const calculatedRoute = ref<Route | null>(null)
 
+const analyticCodes = [
+  { value: 'FRET', title: 'FRET - Transport de marchandises', icon: 'mdi-truck-delivery' },
+  { value: 'PASS', title: 'PASS - Transport de passagers', icon: 'mdi-account-group' },
+  { value: 'MAINT', title: 'MAINT - Maintenance', icon: 'mdi-wrench' },
+  { value: 'TEST', title: 'TEST - Essais techniques', icon: 'mdi-flask' },
+]
+
 const stations = computed(() => stationsStore.stations)
 const stationsLoading = computed(() => stationsStore.loading)
 
@@ -140,13 +147,23 @@ const goToRoutes = () => {
               </template>
             </v-autocomplete>
 
-            <v-text-field
+            <v-select
               v-model="analyticCode"
+              :items="analyticCodes"
+              item-title="title"
+              item-value="value"
               label="Code analytique"
               prepend-inner-icon="mdi-tag"
-              placeholder="Ex: FRET-001, PASS-042"
               :disabled="!!calculatedRoute"
-            />
+            >
+              <template #item="{ props, item }">
+                <v-list-item v-bind="props">
+                  <template #prepend>
+                    <v-icon :icon="item.raw.icon" />
+                  </template>
+                </v-list-item>
+              </template>
+            </v-select>
 
             <v-row class="mt-2">
               <v-col>
