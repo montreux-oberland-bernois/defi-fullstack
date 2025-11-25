@@ -11,13 +11,16 @@ const api: AxiosInstance = axios.create({
   },
 })
 
-// Request interceptor to add auth token
+// Request interceptor to add auth token and locale
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
+    // Add locale header for i18n support
+    const locale = localStorage.getItem('locale') || navigator.language.split('-')[0] || 'fr'
+    config.headers['Accept-Language'] = locale
     return config
   },
   (error) => Promise.reject(error)

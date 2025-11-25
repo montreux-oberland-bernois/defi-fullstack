@@ -87,7 +87,7 @@ class RouteController extends Controller
         if (! $route) {
             return response()->json([
                 'code' => 'ROUTE_NOT_FOUND',
-                'message' => 'Trajet non trouvé',
+                'message' => __('messages.route_not_found'),
             ], 404);
         }
 

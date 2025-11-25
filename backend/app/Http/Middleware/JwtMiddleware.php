@@ -24,17 +24,17 @@ class JwtMiddleware
         } catch (TokenExpiredException) {
             return response()->json([
                 'code' => 'TOKEN_EXPIRED',
-                'message' => 'Le token a expiré',
+                'message' => __('messages.token_expired'),
             ], 401);
         } catch (TokenInvalidException) {
             return response()->json([
                 'code' => 'TOKEN_INVALID',
-                'message' => 'Le token est invalide',
+                'message' => __('messages.token_invalid'),
             ], 401);
         } catch (JWTException) {
             return response()->json([
                 'code' => 'TOKEN_ABSENT',
-                'message' => 'Token d\'autorisation non fourni',
+                'message' => __('messages.unauthorized'),
             ], 401);
         }
 

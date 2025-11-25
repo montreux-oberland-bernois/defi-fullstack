@@ -43,15 +43,15 @@ class CalculateRouteRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'fromStationId.required' => 'La station de départ est obligatoire',
-            'fromStationId.string' => 'La station de départ doit être une chaîne de caractères',
-            'fromStationId.max' => 'La station de départ ne doit pas dépasser :max caractères',
-            'toStationId.required' => "La station d'arrivée est obligatoire",
-            'toStationId.string' => "La station d'arrivée doit être une chaîne de caractères",
-            'toStationId.max' => "La station d'arrivée ne doit pas dépasser :max caractères",
-            'analyticCode.required' => 'Le code analytique est obligatoire',
-            'analyticCode.string' => 'Le code analytique doit être une chaîne de caractères',
-            'analyticCode.in' => 'Le code analytique doit être l\'un des suivants : '.implode(', ', self::VALID_ANALYTIC_CODES),
+            'fromStationId.required' => __('messages.from_station_required'),
+            'fromStationId.string' => __('messages.from_station_string'),
+            'fromStationId.max' => __('messages.from_station_max'),
+            'toStationId.required' => __('messages.to_station_required'),
+            'toStationId.string' => __('messages.to_station_string'),
+            'toStationId.max' => __('messages.to_station_max'),
+            'analyticCode.required' => __('messages.analytic_code_required'),
+            'analyticCode.string' => __('messages.analytic_code_string'),
+            'analyticCode.in' => __('messages.analytic_code_invalid', ['codes' => implode(', ', self::VALID_ANALYTIC_CODES)]),
         ];
     }
 
@@ -63,7 +63,7 @@ class CalculateRouteRequest extends FormRequest
         throw new HttpResponseException(
             response()->json([
                 'code' => 'VALIDATION_ERROR',
-                'message' => 'Requête invalide',
+                'message' => __('messages.invalid_request'),
                 'details' => $validator->errors()->all(),
             ], 400)
         );

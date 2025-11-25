@@ -33,8 +33,8 @@ class RouteCalculatorService
                 'success' => false,
                 'error' => [
                     'code' => 'STATION_NOT_FOUND',
-                    'message' => 'Station de départ inconnue',
-                    'details' => ["La station '{$fromStationId}' n'existe pas"],
+                    'message' => __('messages.departure_station_not_found'),
+                    'details' => [__('messages.station_not_exists', ['station' => $fromStationId])],
                 ],
                 'status' => 422,
             ];
@@ -45,8 +45,8 @@ class RouteCalculatorService
                 'success' => false,
                 'error' => [
                     'code' => 'STATION_NOT_FOUND',
-                    'message' => "Station d'arrivée inconnue",
-                    'details' => ["La station '{$toStationId}' n'existe pas"],
+                    'message' => __('messages.arrival_station_not_found'),
+                    'details' => [__('messages.station_not_exists', ['station' => $toStationId])],
                 ],
                 'status' => 422,
             ];
@@ -68,8 +68,8 @@ class RouteCalculatorService
                 'success' => false,
                 'error' => [
                     'code' => 'NO_ROUTE',
-                    'message' => 'Aucun itinéraire trouvé',
-                    'details' => ["Aucun chemin n'existe entre '{$fromStationId}' et '{$toStationId}'"],
+                    'message' => __('messages.no_route_found'),
+                    'details' => [__('messages.no_path_between_stations', ['from' => $fromStationId, 'to' => $toStationId])],
                 ],
                 'status' => 422,
             ];

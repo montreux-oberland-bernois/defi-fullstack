@@ -26,7 +26,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'code' => 'VALIDATION_ERROR',
-                'message' => 'Erreur de validation',
+                'message' => __('messages.validation_error'),
                 'details' => $validator->errors()->all(),
             ], 400);
         }
@@ -64,7 +64,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 'code' => 'VALIDATION_ERROR',
-                'message' => 'Erreur de validation',
+                'message' => __('messages.validation_error'),
                 'details' => $validator->errors()->all(),
             ], 400);
         }
@@ -74,7 +74,7 @@ class AuthController extends Controller
         if (! $token = JWTAuth::attempt($credentials)) {
             return response()->json([
                 'code' => 'INVALID_CREDENTIALS',
-                'message' => 'Identifiants invalides',
+                'message' => __('messages.invalid_credentials'),
             ], 401);
         }
 
@@ -103,7 +103,7 @@ class AuthController extends Controller
     {
         JWTAuth::invalidate(JWTAuth::getToken());
 
-        return response()->json(['message' => 'Déconnexion réussie']);
+        return response()->json(['message' => __('messages.logout_success')]);
     }
 
     /**
