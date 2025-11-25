@@ -14,7 +14,7 @@ class DistanceSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonPath = base_path('../distances.json');
+        $jsonPath = database_path('data/distances.json');
 
         if (! File::exists($jsonPath)) {
             $this->command->error('Le fichier distances.json n\'existe pas!');

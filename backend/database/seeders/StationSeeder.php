@@ -13,7 +13,7 @@ class StationSeeder extends Seeder
      */
     public function run(): void
     {
-        $jsonPath = base_path('../stations.json');
+        $jsonPath = database_path('data/stations.json');
 
         if (! File::exists($jsonPath)) {
             $this->command->error('Le fichier stations.json n\'existe pas!');
