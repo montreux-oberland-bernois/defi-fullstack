@@ -43,21 +43,12 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   const authStore = useAuthStore()
 
-  console.log('[Router Guard]', {
-    to: to.path,
-    from: from.path,
-    isAuthenticated: authStore.isAuthenticated,
-    token: !!localStorage.getItem('token')
-  })
-
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    console.log('[Router Guard] Redirecting to /login - not authenticated')
     next('/login')
   } else if (to.meta.guest && authStore.isAuthenticated) {
-    console.log('[Router Guard] Redirecting to / - already authenticated')
     next('/')
   } else {
     next()
