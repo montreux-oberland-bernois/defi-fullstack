@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useStationsStore } from '@/stores/stations'
 import { routeService } from '@/services/routeService'
 import RouteMap from '@/components/RouteMap.vue'
 import type { Route, Station } from '@/types'
 
+const { t } = useI18n()
 const router = useRouter()
 const stationsStore = useStationsStore()
 
@@ -16,12 +18,12 @@ const loading = ref(false)
 const error = ref<string | null>(null)
 const calculatedRoute = ref<Route | null>(null)
 
-const analyticCodes = [
-  { value: 'FRET', title: 'FRET - Transport de marchandises', icon: 'mdi-truck-delivery' },
-  { value: 'PASS', title: 'PASS - Transport de passagers', icon: 'mdi-account-group' },
-  { value: 'MAINT', title: 'MAINT - Maintenance', icon: 'mdi-wrench' },
-  { value: 'TEST', title: 'TEST - Essais techniques', icon: 'mdi-flask' },
-]
+const analyticCodes = computed(() => [
+  { value: 'FRET', title: t('analyticCodes.FRET'), icon: 'mdi-truck-delivery' },
+  { value: 'PASS', title: t('analyticCodes.PASS'), icon: 'mdi-account-group' },
+  { value: 'MAINT', title: t('analyticCodes.MAINT'), icon: 'mdi-wrench' },
+  { value: 'TEST', title: t('analyticCodes.TEST'), icon: 'mdi-flask' },
+])
 
 const stations = computed(() => stationsStore.stations)
 const stationsLoading = computed(() => stationsStore.loading)
@@ -67,7 +69,7 @@ const handleSubmit = async () => {
     const axiosError = err as { response?: { data?: { message?: string; details?: string[] } } }
     error.value = axiosError.response?.data?.details?.join(', ') ??
                  axiosError.response?.data?.message ??
-                 'Erreur lors du calcul du trajet'
+                 t('errors.calculation')
   } finally {
     loading.value = false
   }
@@ -99,7 +101,7 @@ const swapStations = () => {
         <v-card class="pa-6">
           <v-card-title class="text-h5 mb-4">
             <v-icon icon="mdi-map-marker-path" class="mr-2" />
-            Calculer un nouveau trajet
+            {{ t('route.calculate') }}
           </v-card-title>
 
           <v-alert
@@ -119,7 +121,7 @@ const swapStations = () => {
               :items="stations"
               item-title="longName"
               item-value="shortName"
-              label="Station de départ"
+              :label="t('route.fromStation')"
               prepend-inner-icon="mdi-map-marker"
               :loading="stationsLoading"
               clearable
@@ -144,7 +146,7 @@ const swapStations = () => {
               >
                 <v-icon icon="mdi-swap-vertical" />
                 <v-tooltip activator="parent" location="end">
-                  Inverser les stations
+                  {{ t('route.swapStations') }}
                 </v-tooltip>
               </v-btn>
             </div>
@@ -154,7 +156,7 @@ const swapStations = () => {
               :items="stations"
               item-title="longName"
               item-value="shortName"
-              label="Station d'arrivée"
+              :label="t('route.toStation')"
               prepend-inner-icon="mdi-map-marker-check"
               :loading="stationsLoading"
               clearable
@@ -174,7 +176,7 @@ const swapStations = () => {
               :items="analyticCodes"
               item-title="title"
               item-value="value"
-              label="Code analytique"
+              :label="t('route.analyticCode')"
               prepend-inner-icon="mdi-tag"
               :disabled="!!calculatedRoute"
             >
@@ -199,7 +201,7 @@ const swapStations = () => {
                   :disabled="!isValid"
                 >
                   <v-icon icon="mdi-calculator" class="mr-2" />
-                  Calculer le trajet
+                  {{ t('route.calculateButton') }}
                 </v-btn>
                 <v-btn
                   v-else
@@ -209,7 +211,7 @@ const swapStations = () => {
                   @click="resetForm"
                 >
                   <v-icon icon="mdi-refresh" class="mr-2" />
-                  Nouveau calcul
+                  {{ t('route.newCalculation') }}
                 </v-btn>
               </v-col>
             </v-row>
@@ -225,7 +227,7 @@ const swapStations = () => {
             >
               <v-card-title class="text-h6">
                 <v-icon icon="mdi-check-circle" class="mr-2" />
-                Trajet calculé avec succès!
+                {{ t('route.success') }}
               </v-card-title>
 
               <v-card-text>
@@ -234,7 +236,7 @@ const swapStations = () => {
                     <template #prepend>
                       <v-icon icon="mdi-map-marker" />
                     </template>
-                    <v-list-item-title>Départ</v-list-item-title>
+                    <v-list-item-title>{{ t('route.departure') }}</v-list-item-title>
                     <v-list-item-subtitle>
                       {{ fromStationName }} ({{ calculatedRoute.fromStationId }})
                     </v-list-item-subtitle>
@@ -244,7 +246,7 @@ const swapStations = () => {
                     <template #prepend>
                       <v-icon icon="mdi-map-marker-check" />
                     </template>
-                    <v-list-item-title>Arrivée</v-list-item-title>
+                    <v-list-item-title>{{ t('route.arrival') }}</v-list-item-title>
                     <v-list-item-subtitle>
                       {{ toStationName }} ({{ calculatedRoute.toStationId }})
                     </v-list-item-subtitle>
@@ -254,7 +256,7 @@ const swapStations = () => {
                     <template #prepend>
                       <v-icon icon="mdi-map-marker-distance" />
                     </template>
-                    <v-list-item-title>Distance</v-list-item-title>
+                    <v-list-item-title>{{ t('route.distance') }}</v-list-item-title>
                     <v-list-item-subtitle>
                       <strong>{{ calculatedRoute.distanceKm }} km</strong>
                     </v-list-item-subtitle>
@@ -264,7 +266,7 @@ const swapStations = () => {
                     <template #prepend>
                       <v-icon icon="mdi-tag" />
                     </template>
-                    <v-list-item-title>Code analytique</v-list-item-title>
+                    <v-list-item-title>{{ t('route.analyticCode') }}</v-list-item-title>
                     <v-list-item-subtitle>
                       {{ calculatedRoute.analyticCode }}
                     </v-list-item-subtitle>
@@ -276,13 +278,13 @@ const swapStations = () => {
                 <!-- Map -->
                 <div class="text-subtitle-2 mb-2">
                   <v-icon icon="mdi-map" size="small" class="mr-1" />
-                  Carte du trajet
+                  {{ t('route.map') }}
                 </div>
                 <RouteMap :path="calculatedRoute.path" class="mb-4" />
 
                 <div class="text-subtitle-2 mb-2">
                   <v-icon icon="mdi-transit-connection-variant" size="small" class="mr-1" />
-                  Itinéraire ({{ calculatedRoute.path.length }} stations)
+                  {{ t('route.itinerary', { count: calculatedRoute.path.length }) }}
                 </div>
                 <v-chip-group>
                   <v-chip
@@ -309,7 +311,7 @@ const swapStations = () => {
                   @click="goToRoutes"
                 >
                   <v-icon icon="mdi-format-list-bulleted" class="mr-2" />
-                  Voir tous les trajets
+                  {{ t('route.viewAll') }}
                 </v-btn>
               </v-card-actions>
             </v-card>

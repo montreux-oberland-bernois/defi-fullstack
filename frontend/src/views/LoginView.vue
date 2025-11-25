@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useAuthStore } from '@/stores/auth'
 
+const { t } = useI18n()
 const router = useRouter()
 const authStore = useAuthStore()
 
@@ -38,7 +40,7 @@ const handleSubmit = async () => {
         <v-card class="pa-6">
           <v-card-title class="text-h4 text-center mb-4">
             <v-icon icon="mdi-train" size="48" color="primary" class="mr-2" />
-            Connexion
+            {{ t('auth.login') }}
           </v-card-title>
 
           <v-alert
@@ -54,7 +56,7 @@ const handleSubmit = async () => {
           <v-form @submit.prevent="handleSubmit">
             <v-text-field
               v-model="email"
-              label="Email"
+              :label="t('auth.email')"
               type="email"
               prepend-inner-icon="mdi-email"
               required
@@ -63,7 +65,7 @@ const handleSubmit = async () => {
 
             <v-text-field
               v-model="password"
-              label="Mot de passe"
+              :label="t('auth.password')"
               :type="showPassword ? 'text' : 'password'"
               prepend-inner-icon="mdi-lock"
               :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -81,15 +83,15 @@ const handleSubmit = async () => {
               :disabled="!isValid"
               class="mt-4"
             >
-              Se connecter
+              {{ t('auth.loginButton') }}
             </v-btn>
           </v-form>
 
           <v-divider class="my-4" />
 
           <div class="text-center">
-            <span class="text-body-2">Pas encore de compte?</span>
-            <router-link to="/register" class="ml-1">S'inscrire</router-link>
+            <span class="text-body-2">{{ t('auth.noAccount') }}</span>
+            <router-link to="/register" class="ml-1">{{ t('auth.registerButton') }}</router-link>
           </div>
         </v-card>
       </v-col>

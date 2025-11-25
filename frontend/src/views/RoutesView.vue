@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { routeService, type RouteFilters } from '@/services/routeService'
 import type { Route } from '@/types'
+
+const { t, locale } = useI18n()
 
 const routes = ref<Route[]>([])
 const loading = ref(false)
@@ -16,25 +19,25 @@ const filterAnalyticCode = ref<string | null>(null)
 const filterFrom = ref<string | null>(null)
 const filterTo = ref<string | null>(null)
 
-const analyticCodes = [
-  { value: 'FRET', title: 'FRET - Transport de marchandises' },
-  { value: 'PASS', title: 'PASS - Transport de passagers' },
-  { value: 'MAINT', title: 'MAINT - Maintenance' },
-  { value: 'TEST', title: 'TEST - Essais techniques' },
-]
+const analyticCodes = computed(() => [
+  { value: 'FRET', title: t('analyticCodes.FRET') },
+  { value: 'PASS', title: t('analyticCodes.PASS') },
+  { value: 'MAINT', title: t('analyticCodes.MAINT') },
+  { value: 'TEST', title: t('analyticCodes.TEST') },
+])
 
-const headers = [
-  { title: 'ID', key: 'id', sortable: false },
-  { title: 'Départ', key: 'fromStationId', sortable: true },
-  { title: 'Arrivée', key: 'toStationId', sortable: true },
-  { title: 'Distance (km)', key: 'distanceKm', sortable: true },
-  { title: 'Code analytique', key: 'analyticCode', sortable: true },
-  { title: 'Date', key: 'createdAt', sortable: true },
-  { title: 'Itinéraire', key: 'path', sortable: false },
-]
+const headers = computed(() => [
+  { title: t('table.id'), key: 'id', sortable: false },
+  { title: t('table.departure'), key: 'fromStationId', sortable: true },
+  { title: t('table.arrival'), key: 'toStationId', sortable: true },
+  { title: t('table.distance'), key: 'distanceKm', sortable: true },
+  { title: t('table.analyticCode'), key: 'analyticCode', sortable: true },
+  { title: t('table.date'), key: 'createdAt', sortable: true },
+  { title: t('table.itinerary'), key: 'path', sortable: false },
+])
 
 const formatDate = (dateStr: string) => {
-  return new Date(dateStr).toLocaleString('fr-FR', {
+  return new Date(dateStr).toLocaleString(locale.value === 'fr' ? 'fr-FR' : 'en-US', {
     dateStyle: 'short',
     timeStyle: 'short',
   })
@@ -61,7 +64,7 @@ const fetchRoutes = async () => {
     total.value = response.meta.total
   } catch (err: unknown) {
     const axiosError = err as { response?: { data?: { message?: string } } }
-    error.value = axiosError.response?.data?.message ?? 'Erreur lors du chargement des trajets'
+    error.value = axiosError.response?.data?.message ?? t('errors.loading')
   } finally {
     loading.value = false
   }
@@ -97,14 +100,14 @@ onMounted(() => {
         <v-card>
           <v-card-title class="d-flex align-center">
             <v-icon icon="mdi-format-list-bulleted" class="mr-2" />
-            Historique des trajets
+            {{ t('route.history') }}
             <v-spacer />
             <v-btn
               color="primary"
               to="/routes/new"
               prepend-icon="mdi-plus"
             >
-              Nouveau trajet
+              {{ t('nav.newRoute') }}
             </v-btn>
           </v-card-title>
 
@@ -117,7 +120,7 @@ onMounted(() => {
                   :items="analyticCodes"
                   item-title="title"
                   item-value="value"
-                  label="Code analytique"
+                  :label="t('filters.analyticCode')"
                   prepend-inner-icon="mdi-tag"
                   clearable
                   density="compact"
@@ -128,7 +131,7 @@ onMounted(() => {
                 <v-text-field
                   v-model="filterFrom"
                   type="date"
-                  label="Du"
+                  :label="t('filters.from')"
                   prepend-inner-icon="mdi-calendar"
                   density="compact"
                   hide-details
@@ -139,7 +142,7 @@ onMounted(() => {
                 <v-text-field
                   v-model="filterTo"
                   type="date"
-                  label="Au"
+                  :label="t('filters.to')"
                   prepend-inner-icon="mdi-calendar"
                   density="compact"
                   hide-details
@@ -209,7 +212,7 @@ onMounted(() => {
                     <span v-bind="props" class="cursor-pointer">
                       {{ formatPath(item.path) }}
                       <v-chip size="x-small" class="ml-1">
-                        {{ item.path.length }} stations
+                        {{ t('route.stations', { count: item.path.length }) }}
                       </v-chip>
                     </span>
                   </template>
@@ -220,7 +223,7 @@ onMounted(() => {
               <template #bottom>
                 <div class="d-flex align-center justify-space-between pa-4">
                   <span class="text-caption text-grey">
-                    {{ total }} trajet(s) au total
+                    {{ t('route.total', { count: total }) }}
                   </span>
                   <v-pagination
                     v-model="currentPage"
@@ -234,13 +237,13 @@ onMounted(() => {
               <template #no-data>
                 <div class="text-center pa-6">
                   <v-icon icon="mdi-train" size="64" color="grey-lighten-1" />
-                  <p class="text-h6 text-grey mt-4">Aucun trajet enregistré</p>
+                  <p class="text-h6 text-grey mt-4">{{ t('route.noRoutes') }}</p>
                   <v-btn
                     color="primary"
                     to="/routes/new"
                     class="mt-2"
                   >
-                    Créer un trajet
+                    {{ t('route.create') }}
                   </v-btn>
                 </div>
               </template>

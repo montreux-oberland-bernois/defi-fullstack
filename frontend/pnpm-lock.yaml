@@ -32,6 +32,9 @@ importers:
       vue-chartjs:
         specifier: ^5.3.1
         version: 5.3.3(chart.js@4.5.1)(vue@3.5.25(typescript@5.6.3))
+      vue-i18n:
+        specifier: ^11.2.1
+        version: 11.2.1(vue@3.5.25(typescript@5.6.3))
       vue-router:
         specifier: ^4.4.5
         version: 4.6.3(vue@3.5.25(typescript@5.6.3))
@@ -317,6 +320,18 @@ packages:
   '@humanwhocodes/retry@0.4.3':
     resolution: {integrity: sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==}
     engines: {node: '>=18.18'}
+
+  '@intlify/core-base@11.2.1':
+    resolution: {integrity: sha512-2V1A4yaN9ElAnQ6ih3HHEc+jZ+sHV6BlQHjCsnIVlOotL5NCUgJElIxgUFiJs6zV4puoAq3hHuQIfWNp+J+8yQ==}
+    engines: {node: '>= 16'}
+
+  '@intlify/message-compiler@11.2.1':
+    resolution: {integrity: sha512-J2454D3Agg3Kvgaj14gxTleJU8/H06Sisz7C2BwiHF0/i5Soyfb5ySpwn8GCL6yscDbOGj6xM+lUe6gO6BFQyg==}
+    engines: {node: '>= 16'}
+
+  '@intlify/shared@11.2.1':
+    resolution: {integrity: sha512-O67LZM4dbfr70WCsZLW+g+pIXdgQ66laLVd/FicW7iYgP/RuH0X1FDGSh+Hr9Gou/8TeldUE6KmTGdLwX2ufIA==}
+    engines: {node: '>= 16'}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -1732,6 +1747,12 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
+  vue-i18n@11.2.1:
+    resolution: {integrity: sha512-cc3Wx4eJZac9WMS8mxhfYiCipm9PBQ2Dz15piWYm7DwNcCehaKRgpolEdiqrjjT27T3Wijz3xJ7NeIc8ofIWAA==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      vue: ^3.0.0
+
   vue-router@4.6.3:
     resolution: {integrity: sha512-ARBedLm9YlbvQomnmq91Os7ck6efydTSpRP3nuOKCvgJOHNrhRoJDSKtee8kcL1Vf7nz6U+PMBL+hTvR3bTVQg==}
     peerDependencies:
@@ -1951,6 +1972,18 @@ snapshots:
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/retry@0.4.3': {}
+
+  '@intlify/core-base@11.2.1':
+    dependencies:
+      '@intlify/message-compiler': 11.2.1
+      '@intlify/shared': 11.2.1
+
+  '@intlify/message-compiler@11.2.1':
+    dependencies:
+      '@intlify/shared': 11.2.1
+      source-map-js: 1.2.1
+
+  '@intlify/shared@11.2.1': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -3377,6 +3410,13 @@ snapshots:
       semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
+
+  vue-i18n@11.2.1(vue@3.5.25(typescript@5.6.3)):
+    dependencies:
+      '@intlify/core-base': 11.2.1
+      '@intlify/shared': 11.2.1
+      '@vue/devtools-api': 6.6.4
+      vue: 3.5.25(typescript@5.6.3)
 
   vue-router@4.6.3(vue@3.5.25(typescript@5.6.3)):
     dependencies:

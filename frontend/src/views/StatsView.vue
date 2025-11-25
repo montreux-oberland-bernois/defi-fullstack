@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Bar } from 'vue-chartjs'
 import {
   Chart as ChartJS,
@@ -15,6 +16,8 @@ import {
 import { statsService, type StatsParams } from '@/services/statsService'
 import type { AnalyticDistanceList } from '@/types'
 
+const { t } = useI18n()
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const stats = ref<AnalyticDistanceList | null>(null)
@@ -25,12 +28,12 @@ const fromDate = ref<string>('')
 const toDate = ref<string>('')
 const groupBy = ref<'none' | 'day' | 'month' | 'year'>('none')
 
-const groupByOptions = [
-  { title: 'Sans groupement', value: 'none' },
-  { title: 'Par jour', value: 'day' },
-  { title: 'Par mois', value: 'month' },
-  { title: 'Par année', value: 'year' },
-]
+const groupByOptions = computed(() => [
+  { title: t('stats.none'), value: 'none' },
+  { title: t('stats.day'), value: 'day' },
+  { title: t('stats.month'), value: 'month' },
+  { title: t('stats.year'), value: 'year' },
+])
 
 const chartData = computed<ChartData<'bar'>>(() => {
   if (!stats.value || stats.value.items.length === 0) {
@@ -50,7 +53,7 @@ const chartData = computed<ChartData<'bar'>>(() => {
     labels,
     datasets: [
       {
-        label: 'Distance totale (km)',
+        label: t('stats.totalDistance') + ' (km)',
         data,
         backgroundColor: 'rgba(25, 118, 210, 0.7)',
         borderColor: 'rgba(25, 118, 210, 1)',
@@ -60,7 +63,7 @@ const chartData = computed<ChartData<'bar'>>(() => {
   }
 })
 
-const chartOptions: ChartOptions<'bar'> = {
+const chartOptions = computed<ChartOptions<'bar'>>(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -69,7 +72,7 @@ const chartOptions: ChartOptions<'bar'> = {
     },
     title: {
       display: true,
-      text: 'Distances par code analytique',
+      text: t('stats.distances'),
     },
   },
   scales: {
@@ -77,17 +80,17 @@ const chartOptions: ChartOptions<'bar'> = {
       beginAtZero: true,
       title: {
         display: true,
-        text: 'Distance (km)',
+        text: t('table.distance'),
       },
     },
     x: {
       title: {
         display: true,
-        text: 'Code analytique',
+        text: t('table.analyticCode'),
       },
     },
   },
-}
+}))
 
 const totalDistance = computed(() => {
   if (!stats.value) return 0
@@ -113,7 +116,7 @@ const fetchStats = async () => {
     stats.value = await statsService.getDistances(params)
   } catch (err: unknown) {
     const axiosError = err as { response?: { data?: { message?: string } } }
-    error.value = axiosError.response?.data?.message ?? 'Erreur lors du chargement des statistiques'
+    error.value = axiosError.response?.data?.message ?? t('errors.loading')
   } finally {
     loading.value = false
   }
@@ -142,14 +145,14 @@ watch([fromDate, toDate, groupBy], () => {
         <v-card class="mb-4">
           <v-card-title>
             <v-icon icon="mdi-filter" class="mr-2" />
-            Filtres
+            {{ t('stats.filters') }}
           </v-card-title>
           <v-card-text>
             <v-row>
               <v-col cols="12" sm="4">
                 <v-text-field
                   v-model="fromDate"
-                  label="Date de début"
+                  :label="t('stats.startDate')"
                   type="date"
                   prepend-inner-icon="mdi-calendar"
                   clearable
@@ -158,7 +161,7 @@ watch([fromDate, toDate, groupBy], () => {
               <v-col cols="12" sm="4">
                 <v-text-field
                   v-model="toDate"
-                  label="Date de fin"
+                  :label="t('stats.endDate')"
                   type="date"
                   prepend-inner-icon="mdi-calendar"
                   clearable
@@ -168,7 +171,7 @@ watch([fromDate, toDate, groupBy], () => {
                 <v-select
                   v-model="groupBy"
                   :items="groupByOptions"
-                  label="Groupement"
+                  :label="t('stats.grouping')"
                   prepend-inner-icon="mdi-group"
                 />
               </v-col>
@@ -181,7 +184,7 @@ watch([fromDate, toDate, groupBy], () => {
                   @click="fetchStats"
                 >
                   <v-icon icon="mdi-refresh" class="mr-2" />
-                  Actualiser
+                  {{ t('stats.refresh') }}
                 </v-btn>
                 <v-btn
                   color="secondary"
@@ -189,7 +192,7 @@ watch([fromDate, toDate, groupBy], () => {
                   @click="resetFilters"
                 >
                   <v-icon icon="mdi-filter-remove" class="mr-2" />
-                  Réinitialiser
+                  {{ t('stats.resetFilters') }}
                 </v-btn>
               </v-col>
             </v-row>
@@ -204,7 +207,7 @@ watch([fromDate, toDate, groupBy], () => {
           <v-card-text class="text-center">
             <v-icon icon="mdi-map-marker-distance" size="48" />
             <div class="text-h4 mt-2">{{ totalDistance }} km</div>
-            <div class="text-subtitle-1">Distance totale</div>
+            <div class="text-subtitle-1">{{ t('stats.totalDistance') }}</div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -213,7 +216,7 @@ watch([fromDate, toDate, groupBy], () => {
           <v-card-text class="text-center">
             <v-icon icon="mdi-tag-multiple" size="48" />
             <div class="text-h4 mt-2">{{ uniqueCodes }}</div>
-            <div class="text-subtitle-1">Codes analytiques</div>
+            <div class="text-subtitle-1">{{ t('stats.analyticCodes') }}</div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -222,7 +225,7 @@ watch([fromDate, toDate, groupBy], () => {
           <v-card-text class="text-center">
             <v-icon icon="mdi-chart-bar" size="48" />
             <div class="text-h4 mt-2">{{ stats?.items.length ?? 0 }}</div>
-            <div class="text-subtitle-1">Entrées</div>
+            <div class="text-subtitle-1">{{ t('stats.entries') }}</div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -233,7 +236,7 @@ watch([fromDate, toDate, groupBy], () => {
         <v-card>
           <v-card-title>
             <v-icon icon="mdi-chart-bar" class="mr-2" />
-            Graphique des distances
+            {{ t('stats.distancesChart') }}
           </v-card-title>
           <v-card-text>
             <v-alert
@@ -256,16 +259,16 @@ watch([fromDate, toDate, groupBy], () => {
 
             <div v-else class="text-center pa-8">
               <v-icon icon="mdi-chart-box-outline" size="64" color="grey-lighten-1" />
-              <p class="text-h6 text-grey mt-4">Aucune donnée à afficher</p>
+              <p class="text-h6 text-grey mt-4">{{ t('stats.noData') }}</p>
               <p class="text-body-2 text-grey">
-                Créez des trajets pour voir les statistiques ici.
+                {{ t('stats.noDataHint') }}
               </p>
               <v-btn
                 color="primary"
                 to="/routes/new"
                 class="mt-2"
               >
-                Créer un trajet
+                {{ t('route.create') }}
               </v-btn>
             </div>
           </v-card-text>
@@ -278,16 +281,16 @@ watch([fromDate, toDate, groupBy], () => {
         <v-card>
           <v-card-title>
             <v-icon icon="mdi-table" class="mr-2" />
-            Détail des statistiques
+            {{ t('stats.statsDetails') }}
           </v-card-title>
           <v-card-text>
             <v-data-table
               :headers="[
-                { title: 'Code analytique', key: 'analyticCode' },
-                { title: 'Distance totale (km)', key: 'totalDistanceKm' },
-                { title: 'Période début', key: 'periodStart' },
-                { title: 'Période fin', key: 'periodEnd' },
-                { title: 'Groupe', key: 'group' },
+                { title: t('table.analyticCode'), key: 'analyticCode' },
+                { title: t('table.distance'), key: 'totalDistanceKm' },
+                { title: t('stats.periodStart'), key: 'periodStart' },
+                { title: t('stats.periodEnd'), key: 'periodEnd' },
+                { title: t('stats.group'), key: 'group' },
               ]"
               :items="stats?.items ?? []"
               :loading="loading"
@@ -312,7 +315,7 @@ watch([fromDate, toDate, groupBy], () => {
 
               <template #no-data>
                 <div class="text-center pa-4">
-                  <p class="text-grey">Aucune statistique disponible</p>
+                  <p class="text-grey">{{ t('stats.noStats') }}</p>
                 </div>
               </template>
             </v-data-table>

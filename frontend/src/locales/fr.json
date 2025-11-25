@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "Train Routing",
+    "footer": "Défi Full Stack - Train Routing"
+  },
+  "nav": {
+    "home": "Accueil",
+    "routes": "Trajets",
+    "newRoute": "Nouveau trajet",
+    "stats": "Statistiques",
+    "login": "Connexion",
+    "logout": "Déconnexion"
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "passwordConfirm": "Confirmer le mot de passe",
+    "name": "Nom",
+    "loginButton": "Se connecter",
+    "registerButton": "S'inscrire",
+    "noAccount": "Pas encore de compte ?",
+    "hasAccount": "Déjà inscrit ?",
+    "loginError": "Erreur de connexion",
+    "registerError": "Erreur d'inscription",
+    "minChars": "Minimum {count} caractères",
+    "passwordMismatch": "Les mots de passe ne correspondent pas"
+  },
+  "home": {
+    "welcome": "Bienvenue, {name}!",
+    "description": "Application de calcul de trajets ferroviaires et statistiques",
+    "newRoute": "Nouveau Trajet",
+    "newRouteDesc": "Calculer un trajet entre deux stations",
+    "myRoutes": "Mes Trajets",
+    "myRoutesDesc": "Consulter l'historique des trajets",
+    "statistics": "Statistiques",
+    "statisticsDesc": "Statistiques par code analytique"
+  },
+  "dashboard": {
+    "routesThisMonth": "Trajets ce mois",
+    "distanceThisMonth": "km ce mois",
+    "totalRoutes": "Trajets total",
+    "totalDistance": "km total",
+    "distribution": "Répartition {month}"
+  },
+  "route": {
+    "calculate": "Calculer un nouveau trajet",
+    "history": "Historique des trajets",
+    "fromStation": "Station de départ",
+    "toStation": "Station d'arrivée",
+    "analyticCode": "Code analytique",
+    "swapStations": "Inverser les stations",
+    "calculateButton": "Calculer le trajet",
+    "newCalculation": "Nouveau calcul",
+    "success": "Trajet calculé avec succès!",
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "distance": "Distance",
+    "map": "Carte du trajet",
+    "itinerary": "Itinéraire ({count} stations)",
+    "viewAll": "Voir tous les trajets",
+    "create": "Créer un trajet",
+    "noRoutes": "Aucun trajet enregistré",
+    "total": "{count} trajet(s) au total",
+    "stations": "{count} stations"
+  },
+  "filters": {
+    "analyticCode": "Code analytique",
+    "from": "Du",
+    "to": "Au",
+    "apply": "Appliquer",
+    "reset": "Réinitialiser"
+  },
+  "analyticCodes": {
+    "FRET": "FRET - Transport de marchandises",
+    "PASS": "PASS - Transport de passagers",
+    "MAINT": "MAINT - Maintenance",
+    "TEST": "TEST - Essais techniques",
+    "labels": {
+      "FRET": "Fret",
+      "PASS": "Passagers",
+      "MAINT": "Maintenance",
+      "TEST": "Tests"
+    }
+  },
+  "stats": {
+    "title": "Statistiques",
+    "filters": "Filtres",
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "grouping": "Groupement",
+    "distances": "Distances par code analytique",
+    "distancesChart": "Graphique des distances",
+    "statsDetails": "Détail des statistiques",
+    "totalDistance": "Distance totale",
+    "analyticCodes": "Codes analytiques",
+    "entries": "Entrées",
+    "refresh": "Actualiser",
+    "resetFilters": "Réinitialiser",
+    "groupBy": "Grouper par",
+    "day": "Par jour",
+    "month": "Par mois",
+    "year": "Par année",
+    "none": "Sans groupement",
+    "noData": "Aucune donnée à afficher",
+    "noDataHint": "Créez des trajets pour voir les statistiques ici.",
+    "noStats": "Aucune statistique disponible",
+    "periodStart": "Période début",
+    "periodEnd": "Période fin",
+    "group": "Groupe"
+  },
+  "table": {
+    "id": "ID",
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "distance": "Distance (km)",
+    "analyticCode": "Code analytique",
+    "date": "Date",
+    "itinerary": "Itinéraire"
+  },
+  "errors": {
+    "loading": "Erreur lors du chargement",
+    "calculation": "Erreur lors du calcul du trajet",
+    "generic": "Une erreur est survenue"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "search": "Rechercher"
+  }
+}

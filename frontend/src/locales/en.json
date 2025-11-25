@@ -1,0 +1,138 @@
+{
+  "app": {
+    "title": "Train Routing",
+    "footer": "Full Stack Challenge - Train Routing"
+  },
+  "nav": {
+    "home": "Home",
+    "routes": "Routes",
+    "newRoute": "New route",
+    "stats": "Statistics",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email address",
+    "password": "Password",
+    "passwordConfirm": "Confirm password",
+    "name": "Name",
+    "loginButton": "Sign in",
+    "registerButton": "Sign up",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already registered?",
+    "loginError": "Login error",
+    "registerError": "Registration error",
+    "minChars": "Minimum {count} characters",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "home": {
+    "welcome": "Welcome, {name}!",
+    "description": "Railway route calculation and statistics application",
+    "newRoute": "New Route",
+    "newRouteDesc": "Calculate a route between two stations",
+    "myRoutes": "My Routes",
+    "myRoutesDesc": "View route history",
+    "statistics": "Statistics",
+    "statisticsDesc": "Statistics by analytic code"
+  },
+  "dashboard": {
+    "routesThisMonth": "Routes this month",
+    "distanceThisMonth": "km this month",
+    "totalRoutes": "Total routes",
+    "totalDistance": "km total",
+    "distribution": "Distribution {month}"
+  },
+  "route": {
+    "calculate": "Calculate a new route",
+    "history": "Route history",
+    "fromStation": "Departure station",
+    "toStation": "Arrival station",
+    "analyticCode": "Analytic code",
+    "swapStations": "Swap stations",
+    "calculateButton": "Calculate route",
+    "newCalculation": "New calculation",
+    "success": "Route calculated successfully!",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "distance": "Distance",
+    "map": "Route map",
+    "itinerary": "Itinerary ({count} stations)",
+    "viewAll": "View all routes",
+    "create": "Create a route",
+    "noRoutes": "No routes recorded",
+    "total": "{count} route(s) in total",
+    "stations": "{count} stations"
+  },
+  "filters": {
+    "analyticCode": "Analytic code",
+    "from": "From",
+    "to": "To",
+    "apply": "Apply",
+    "reset": "Reset"
+  },
+  "analyticCodes": {
+    "FRET": "FRET - Freight transport",
+    "PASS": "PASS - Passenger transport",
+    "MAINT": "MAINT - Maintenance",
+    "TEST": "TEST - Technical tests",
+    "labels": {
+      "FRET": "Freight",
+      "PASS": "Passengers",
+      "MAINT": "Maintenance",
+      "TEST": "Tests"
+    }
+  },
+  "stats": {
+    "title": "Statistics",
+    "filters": "Filters",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "grouping": "Grouping",
+    "distances": "Distances by analytic code",
+    "distancesChart": "Distance chart",
+    "statsDetails": "Statistics details",
+    "totalDistance": "Total distance",
+    "analyticCodes": "Analytic codes",
+    "entries": "Entries",
+    "refresh": "Refresh",
+    "resetFilters": "Reset",
+    "groupBy": "Group by",
+    "day": "By day",
+    "month": "By month",
+    "year": "By year",
+    "none": "No grouping",
+    "noData": "No data to display",
+    "noDataHint": "Create routes to see statistics here.",
+    "noStats": "No statistics available",
+    "periodStart": "Period start",
+    "periodEnd": "Period end",
+    "group": "Group"
+  },
+  "table": {
+    "id": "ID",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "distance": "Distance (km)",
+    "analyticCode": "Analytic code",
+    "date": "Date",
+    "itinerary": "Itinerary"
+  },
+  "errors": {
+    "loading": "Loading error",
+    "calculation": "Route calculation error",
+    "generic": "An error occurred"
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search"
+  }
+}
