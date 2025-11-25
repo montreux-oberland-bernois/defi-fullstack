@@ -1,0 +1,507 @@
+[
+  {
+    "id": 1,
+    "shortName": "ALLI",
+    "longName": "Allières"
+  },
+  {
+    "id": 2,
+    "shortName": "AVA",
+    "longName": "Les Avants"
+  },
+  {
+    "id": 3,
+    "shortName": "BCHX",
+    "longName": "Bois-de-Chexbres"
+  },
+  {
+    "id": 4,
+    "shortName": "BEMM",
+    "longName": "Belmont-sur-Mx"
+  },
+  {
+    "id": 5,
+    "shortName": "BLB",
+    "longName": "Blankenburg"
+  },
+  {
+    "id": 6,
+    "shortName": "BLON",
+    "longName": "Blonay"
+  },
+  {
+    "id": 7,
+    "shortName": "BODE",
+    "longName": "Boden"
+  },
+  {
+    "id": 8,
+    "shortName": "CABY",
+    "longName": "Chamby"
+  },
+  {
+    "id": 9,
+    "shortName": "CASE",
+    "longName": "Les Cases"
+  },
+  {
+    "id": 10,
+    "shortName": "CAUX",
+    "longName": "Caux"
+  },
+  {
+    "id": 11,
+    "shortName": "CGE",
+    "longName": "Montreux-Collège"
+  },
+  {
+    "id": 12,
+    "shortName": "CHAL",
+    "longName": "Châtelard VD"
+  },
+  {
+    "id": 13,
+    "shortName": "CHAN",
+    "longName": "Chantemerle-près-Blonay"
+  },
+  {
+    "id": 14,
+    "shortName": "CHAU",
+    "longName": "La Chaudanne-Les Moulins"
+  },
+  {
+    "id": 15,
+    "shortName": "CHBL",
+    "longName": "Château-de-Blonay"
+  },
+  {
+    "id": 16,
+    "shortName": "CHCO",
+    "longName": "Chaulin-Cornaux"
+  },
+  {
+    "id": 17,
+    "shortName": "CHER",
+    "longName": "Chernex"
+  },
+  {
+    "id": 18,
+    "shortName": "CHEV",
+    "longName": "Les Chevalleyres"
+  },
+  {
+    "id": 19,
+    "shortName": "CHIZ",
+    "longName": "La Chiésaz"
+  },
+  {
+    "id": 20,
+    "shortName": "CHOE",
+    "longName": "Château-d'Oex"
+  },
+  {
+    "id": 21,
+    "shortName": "CHTV",
+    "longName": "Château-d'Hauteville"
+  },
+  {
+    "id": 22,
+    "shortName": "CLIE",
+    "longName": "Clies"
+  },
+  {
+    "id": 23,
+    "shortName": "COLD",
+    "longName": "Colondalles"
+  },
+  {
+    "id": 24,
+    "shortName": "COMS",
+    "longName": "Les Combes"
+  },
+  {
+    "id": 25,
+    "shortName": "CRDB",
+    "longName": "Crêt-d'y-Bau"
+  },
+  {
+    "id": 26,
+    "shortName": "ECTS",
+    "longName": "Les Echets"
+  },
+  {
+    "id": 27,
+    "shortName": "FAY",
+    "longName": "Fayaux"
+  },
+  {
+    "id": 28,
+    "shortName": "FLED",
+    "longName": "Flendruz"
+  },
+  {
+    "id": 29,
+    "shortName": "FON",
+    "longName": "Fontanivent"
+  },
+  {
+    "id": 30,
+    "shortName": "VVVI",
+    "longName": "Vevey Vignerons"
+  },
+  {
+    "id": 31,
+    "shortName": "GLCO",
+    "longName": "Glion-Collège"
+  },
+  {
+    "id": 32,
+    "shortName": "GLI",
+    "longName": "Glion"
+  },
+  {
+    "id": 33,
+    "shortName": "GLIA",
+    "longName": "Glion-Alpes"
+  },
+  {
+    "id": 34,
+    "shortName": "GRAC",
+    "longName": "Château-d'Oex-Les Granges"
+  },
+  {
+    "id": 35,
+    "shortName": "GRUB",
+    "longName": "Gruben"
+  },
+  {
+    "id": 36,
+    "shortName": "GST",
+    "longName": "Gstaad"
+  },
+  {
+    "id": 37,
+    "shortName": "HALN",
+    "longName": "Halten"
+  },
+  {
+    "id": 38,
+    "shortName": "HDC",
+    "longName": "Haut-de-Caux"
+  },
+  {
+    "id": 39,
+    "shortName": "HTV",
+    "longName": "Hauteville"
+  },
+  {
+    "id": 40,
+    "shortName": "JAMA",
+    "longName": "Jaman"
+  },
+  {
+    "id": 41,
+    "shortName": "JOR",
+    "longName": "Jor"
+  },
+  {
+    "id": 42,
+    "shortName": "LAL",
+    "longName": "Lally"
+  },
+  {
+    "id": 43,
+    "shortName": "LENK",
+    "longName": "Lenk im Simmental"
+  },
+  {
+    "id": 44,
+    "shortName": "MATE",
+    "longName": "Matten"
+  },
+  {
+    "id": 45,
+    "shortName": "MTB",
+    "longName": "Montbovon"
+  },
+  {
+    "id": 46,
+    "shortName": "MX",
+    "longName": "Montreux"
+  },
+  {
+    "id": 47,
+    "shortName": "OES",
+    "longName": "Oeschseite"
+  },
+  {
+    "id": 48,
+    "shortName": "OEYA",
+    "longName": "Anschussgl. Oey"
+  },
+  {
+    "id": 49,
+    "shortName": "OND",
+    "longName": "Ondallaz-L'Alliaz"
+  },
+  {
+    "id": 50,
+    "shortName": "PACC",
+    "longName": "Paccot"
+  },
+  {
+    "id": 51,
+    "shortName": "PALZ",
+    "longName": "La Palaz"
+  },
+  {
+    "id": 52,
+    "shortName": "PERC",
+    "longName": "La Perche"
+  },
+  {
+    "id": 53,
+    "shortName": "PLAC",
+    "longName": "Planchamp"
+  },
+  {
+    "id": 54,
+    "shortName": "PLCH",
+    "longName": "Les Planches"
+  },
+  {
+    "id": 55,
+    "shortName": "PLEI",
+    "longName": "Les Pléiades"
+  },
+  {
+    "id": 56,
+    "shortName": "PRLN",
+    "longName": "Prélaz-sur-Blonay"
+  },
+  {
+    "id": 57,
+    "shortName": "RODN",
+    "longName": "Rochers-de-Naye"
+  },
+  {
+    "id": 58,
+    "shortName": "ROSI",
+    "longName": "Rossinière"
+  },
+  {
+    "id": 59,
+    "shortName": "ROU",
+    "longName": "Rougemont"
+  },
+  {
+    "id": 60,
+    "shortName": "SAAN",
+    "longName": "Saanen"
+  },
+  {
+    "id": 61,
+    "shortName": "SAMO",
+    "longName": "Saanenmöser"
+  },
+  {
+    "id": 62,
+    "shortName": "SCI",
+    "longName": "Les Sciernes"
+  },
+  {
+    "id": 63,
+    "shortName": "SCR",
+    "longName": "Schönried"
+  },
+  {
+    "id": 64,
+    "shortName": "SDY",
+    "longName": "Sendy-Sollard"
+  },
+  {
+    "id": 65,
+    "shortName": "SONZ",
+    "longName": "Sonzier"
+  },
+  {
+    "id": 66,
+    "shortName": "STLE",
+    "longName": "St-Légier-Gare"
+  },
+  {
+    "id": 67,
+    "shortName": "STLV",
+    "longName": "St-Légier-Village"
+  },
+  {
+    "id": 68,
+    "shortName": "STOI",
+    "longName": "Stöckli"
+  },
+  {
+    "id": 69,
+    "shortName": "STST",
+    "longName": "St. Stephan"
+  },
+  {
+    "id": 70,
+    "shortName": "TINE",
+    "longName": "La Tine"
+  },
+  {
+    "id": 71,
+    "shortName": "TOV",
+    "longName": "Toveyre"
+  },
+  {
+    "id": 72,
+    "shortName": "TREM",
+    "longName": "Le Tremblex"
+  },
+  {
+    "id": 73,
+    "shortName": "TUS",
+    "longName": "Tusinge"
+  },
+  {
+    "id": 74,
+    "shortName": "VALM",
+    "longName": "Valmont"
+  },
+  {
+    "id": 75,
+    "shortName": "VUAR",
+    "longName": "Vuarennes"
+  },
+  {
+    "id": 76,
+    "shortName": "VV",
+    "longName": "Vevey"
+  },
+  {
+    "id": 77,
+    "shortName": "ZW",
+    "longName": "Zweisimmen"
+  },
+  {
+    "id": 78,
+    "shortName": "BOSQ",
+    "longName": "Bosquets"
+  },
+  {
+    "id": 86,
+    "shortName": "GRU",
+    "longName": "Grubenwald"
+  },
+  {
+    "id": 87,
+    "shortName": "WBA",
+    "longName": "Weissenbach"
+  },
+  {
+    "id": 88,
+    "shortName": "BOLT",
+    "longName": "Boltigen"
+  },
+  {
+    "id": 89,
+    "shortName": "ENGE",
+    "longName": "Enge im Simmental"
+  },
+  {
+    "id": 90,
+    "shortName": "OIS",
+    "longName": "Oberwil im Simmental"
+  },
+  {
+    "id": 91,
+    "shortName": "WG",
+    "longName": "Weissenburg"
+  },
+  {
+    "id": 92,
+    "shortName": "DR",
+    "longName": "Därstetten"
+  },
+  {
+    "id": 93,
+    "shortName": "RGD",
+    "longName": "Ringoldingen"
+  },
+  {
+    "id": 94,
+    "shortName": "ERLB",
+    "longName": "Erlenbach im Simmental"
+  },
+  {
+    "id": 95,
+    "shortName": "OE",
+    "longName": "Oey-Diemtigen"
+  },
+  {
+    "id": 96,
+    "shortName": "BH",
+    "longName": "Burgholz"
+  },
+  {
+    "id": 97,
+    "shortName": "WM",
+    "longName": "Wimmis"
+  },
+  {
+    "id": 98,
+    "shortName": "EIF",
+    "longName": "Eifeld"
+  },
+  {
+    "id": 99,
+    "shortName": "LAT",
+    "longName": "Lattigen bei Spiez"
+  },
+  {
+    "id": 100,
+    "shortName": "SPAB",
+    "longName": "Spiez (Abzw)"
+  },
+  {
+    "id": 101,
+    "shortName": "SP",
+    "longName": "Spiez"
+  },
+  {
+    "id": 102,
+    "shortName": "FS",
+    "longName": "Faulensee"
+  },
+  {
+    "id": 103,
+    "shortName": "KH",
+    "longName": "Krattighalde"
+  },
+  {
+    "id": 104,
+    "shortName": "LBAD",
+    "longName": "Leissigbad (Agl)"
+  },
+  {
+    "id": 105,
+    "shortName": "LSS",
+    "longName": "Leissigen"
+  },
+  {
+    "id": 106,
+    "shortName": "DAE",
+    "longName": "Därligen"
+  },
+  {
+    "id": 107,
+    "shortName": "IW",
+    "longName": "Interlaken West"
+  },
+  {
+    "id": 108,
+    "shortName": "IO",
+    "longName": "Interlaken Ost"
+  }
+]

@@ -1,1 +1,23 @@
 .idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Docker
+docker-compose.override.yml
+
+# Logs
+*.log
+
+# Dependencies (handled by sub-projects)
+node_modules/
+vendor/
