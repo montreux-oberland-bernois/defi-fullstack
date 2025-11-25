@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
-import { routeService } from '@/services/routeService'
+import { ref, onMounted } from 'vue'
+import { routeService, type RouteFilters } from '@/services/routeService'
 import type { Route } from '@/types'
 
 const routes = ref<Route[]>([])
@@ -10,6 +10,18 @@ const currentPage = ref(1)
 const totalPages = ref(1)
 const total = ref(0)
 const perPage = ref(15)
+
+// Filters
+const filterAnalyticCode = ref<string | null>(null)
+const filterFrom = ref<string | null>(null)
+const filterTo = ref<string | null>(null)
+
+const analyticCodes = [
+  { value: 'FRET', title: 'FRET - Transport de marchandises' },
+  { value: 'PASS', title: 'PASS - Transport de passagers' },
+  { value: 'MAINT', title: 'MAINT - Maintenance' },
+  { value: 'TEST', title: 'TEST - Essais techniques' },
+]
 
 const headers = [
   { title: 'ID', key: 'id', sortable: false },
@@ -33,11 +45,17 @@ const formatPath = (path: string[]) => {
   return `${path[0]} → ... → ${path[path.length - 1]}`
 }
 
+const getFilters = (): RouteFilters => ({
+  analyticCode: filterAnalyticCode.value || undefined,
+  from: filterFrom.value || undefined,
+  to: filterTo.value || undefined,
+})
+
 const fetchRoutes = async () => {
   loading.value = true
   error.value = null
   try {
-    const response = await routeService.getAll(currentPage.value, perPage.value)
+    const response = await routeService.getAll(currentPage.value, perPage.value, getFilters())
     routes.value = response.data
     totalPages.value = response.meta.last_page
     total.value = response.meta.total
@@ -47,6 +65,19 @@ const fetchRoutes = async () => {
   } finally {
     loading.value = false
   }
+}
+
+const applyFilters = () => {
+  currentPage.value = 1
+  fetchRoutes()
+}
+
+const resetFilters = () => {
+  filterAnalyticCode.value = null
+  filterFrom.value = null
+  filterTo.value = null
+  currentPage.value = 1
+  fetchRoutes()
 }
 
 const handlePageChange = (page: number) => {
@@ -78,6 +109,62 @@ onMounted(() => {
           </v-card-title>
 
           <v-card-text>
+            <!-- Filters -->
+            <v-row class="mb-4" dense>
+              <v-col cols="12" sm="4">
+                <v-select
+                  v-model="filterAnalyticCode"
+                  :items="analyticCodes"
+                  item-title="title"
+                  item-value="value"
+                  label="Code analytique"
+                  prepend-inner-icon="mdi-tag"
+                  clearable
+                  density="compact"
+                  hide-details
+                />
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-text-field
+                  v-model="filterFrom"
+                  type="date"
+                  label="Du"
+                  prepend-inner-icon="mdi-calendar"
+                  density="compact"
+                  hide-details
+                  clearable
+                />
+              </v-col>
+              <v-col cols="12" sm="3">
+                <v-text-field
+                  v-model="filterTo"
+                  type="date"
+                  label="Au"
+                  prepend-inner-icon="mdi-calendar"
+                  density="compact"
+                  hide-details
+                  clearable
+                />
+              </v-col>
+              <v-col cols="12" sm="2" class="d-flex align-center gap-1">
+                <v-btn
+                  color="primary"
+                  variant="tonal"
+                  size="small"
+                  @click="applyFilters"
+                >
+                  <v-icon icon="mdi-filter" />
+                </v-btn>
+                <v-btn
+                  variant="text"
+                  size="small"
+                  @click="resetFilters"
+                >
+                  <v-icon icon="mdi-filter-off" />
+                </v-btn>
+              </v-col>
+            </v-row>
+
             <v-alert
               v-if="error"
               type="error"

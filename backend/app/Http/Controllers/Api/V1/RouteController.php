@@ -36,16 +36,34 @@ class RouteController extends Controller
     }
 
     /**
-     * Get all routes (with pagination).
+     * Get all routes (with pagination and filters).
      * GET /api/v1/routes
+     *
+     * @queryParam per_page int Items per page (max 100)
+     * @queryParam analytic_code string Filter by analytic code
+     * @queryParam from string Filter by start date (Y-m-d)
+     * @queryParam to string Filter by end date (Y-m-d)
      */
     public function index(Request $request): JsonResponse
     {
         $perPage = min($request->input('per_page', 15), 100);
 
-        $routes = TrainRoute::with(['fromStation', 'toStation'])
-            ->orderBy('created_at', 'desc')
-            ->paginate($perPage);
+        $query = TrainRoute::with(['fromStation', 'toStation']);
+
+        // Filter by analytic code
+        if ($request->filled('analytic_code')) {
+            $query->where('analytic_code', $request->input('analytic_code'));
+        }
+
+        // Filter by date range
+        if ($request->filled('from')) {
+            $query->whereDate('created_at', '>=', $request->input('from'));
+        }
+        if ($request->filled('to')) {
+            $query->whereDate('created_at', '<=', $request->input('to'));
+        }
+
+        $routes = $query->orderBy('created_at', 'desc')->paginate($perPage);
 
         return response()->json([
             'data' => $routes->map(fn ($route) => $route->toApiResponse()),
