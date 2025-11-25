@@ -1,5 +1,7 @@
 # Train Routing - Full Stack Application
 
+![CI](https://github.com/Uldrys/defi-fullstack/actions/workflows/ci.yml/badge.svg)
+
 Application de calcul d'itinéraires ferroviaires avec statistiques par code analytique.
 
 ## Tech Stack
