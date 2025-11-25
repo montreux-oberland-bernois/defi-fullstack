@@ -143,4 +143,94 @@ class RouteApiTest extends TestCase
                 'code' => 'VALIDATION_ERROR',
             ]);
     }
+
+    public function test_calculate_route_accepts_valid_analytic_codes(): void
+    {
+        $validCodes = ['FRET', 'PASS', 'MAINT', 'TEST'];
+
+        foreach ($validCodes as $code) {
+            $response = $this->withHeaders([
+                'Authorization' => "Bearer {$this->token}",
+            ])->postJson('/api/v1/routes', [
+                'fromStationId' => 'MX',
+                'toStationId' => 'VUAR',
+                'analyticCode' => $code,
+            ]);
+
+            $response->assertStatus(201);
+            $this->assertEquals($code, $response->json('analyticCode'));
+        }
+    }
+
+    public function test_calculate_route_rejects_invalid_analytic_code(): void
+    {
+        $response = $this->withHeaders([
+            'Authorization' => "Bearer {$this->token}",
+        ])->postJson('/api/v1/routes', [
+            'fromStationId' => 'MX',
+            'toStationId' => 'VUAR',
+            'analyticCode' => 'INVALID-CODE',
+        ]);
+
+        $response->assertStatus(400)
+            ->assertJson([
+                'code' => 'VALIDATION_ERROR',
+            ]);
+    }
+
+    public function test_get_routes_with_analytic_code_filter(): void
+    {
+        // Create routes with different analytic codes
+        $this->withHeaders([
+            'Authorization' => "Bearer {$this->token}",
+        ])->postJson('/api/v1/routes', [
+            'fromStationId' => 'MX',
+            'toStationId' => 'VUAR',
+            'analyticCode' => 'FRET',
+        ]);
+
+        $this->withHeaders([
+            'Authorization' => "Bearer {$this->token}",
+        ])->postJson('/api/v1/routes', [
+            'fromStationId' => 'MX',
+            'toStationId' => 'CGE',
+            'analyticCode' => 'PASS',
+        ]);
+
+        // Filter by FRET
+        $response = $this->withHeaders([
+            'Authorization' => "Bearer {$this->token}",
+        ])->getJson('/api/v1/routes?analytic_code=FRET');
+
+        $response->assertStatus(200);
+        $this->assertEquals(1, $response->json('meta.total'));
+        $this->assertEquals('FRET', $response->json('data.0.analyticCode'));
+    }
+
+    public function test_get_routes_without_filter_returns_all(): void
+    {
+        // Create routes
+        $this->withHeaders([
+            'Authorization' => "Bearer {$this->token}",
+        ])->postJson('/api/v1/routes', [
+            'fromStationId' => 'MX',
+            'toStationId' => 'VUAR',
+            'analyticCode' => 'FRET',
+        ]);
+
+        $this->withHeaders([
+            'Authorization' => "Bearer {$this->token}",
+        ])->postJson('/api/v1/routes', [
+            'fromStationId' => 'MX',
+            'toStationId' => 'CGE',
+            'analyticCode' => 'PASS',
+        ]);
+
+        $response = $this->withHeaders([
+            'Authorization' => "Bearer {$this->token}",
+        ])->getJson('/api/v1/routes');
+
+        $response->assertStatus(200);
+        $this->assertEquals(2, $response->json('meta.total'));
+    }
 }
