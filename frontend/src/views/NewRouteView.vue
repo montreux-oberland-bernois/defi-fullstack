@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStationsStore } from '@/stores/stations'
 import { routeService } from '@/services/routeService'
+import RouteMap from '@/components/RouteMap.vue'
 import type { Route, Station } from '@/types'
 
 const router = useRouter()
@@ -271,6 +272,13 @@ const swapStations = () => {
                 </v-list>
 
                 <v-divider class="my-3" />
+
+                <!-- Map -->
+                <div class="text-subtitle-2 mb-2">
+                  <v-icon icon="mdi-map" size="small" class="mr-1" />
+                  Carte du trajet
+                </div>
+                <RouteMap :path="calculatedRoute.path" class="mb-4" />
 
                 <div class="text-subtitle-2 mb-2">
                   <v-icon icon="mdi-transit-connection-variant" size="small" class="mr-1" />

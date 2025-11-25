@@ -35,6 +35,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/routes/{id}', [RouteController::class, 'show']);
 
         // Analytics - Statistiques
+        Route::get('/stats/dashboard', [StatsController::class, 'dashboard']);
         Route::get('/stats/distances', [StatsController::class, 'distances']);
 
         // Stations (endpoints utilitaires)

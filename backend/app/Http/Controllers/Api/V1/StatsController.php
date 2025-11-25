@@ -13,6 +13,51 @@ use Illuminate\Support\Facades\Validator;
 class StatsController extends Controller
 {
     /**
+     * Get dashboard KPIs.
+     * GET /api/v1/stats/dashboard
+     */
+    public function dashboard(): JsonResponse
+    {
+        $now = Carbon::now();
+        $startOfMonth = $now->copy()->startOfMonth();
+
+        // Total routes this month
+        $routesThisMonth = TrainRoute::whereDate('created_at', '>=', $startOfMonth)->count();
+
+        // Total distance this month
+        $distanceThisMonth = TrainRoute::whereDate('created_at', '>=', $startOfMonth)
+            ->sum('distance_km');
+
+        // Total routes all time
+        $totalRoutes = TrainRoute::count();
+
+        // Total distance all time
+        $totalDistance = TrainRoute::sum('distance_km');
+
+        // Distribution by analytic code (this month)
+        $distribution = TrainRoute::whereDate('created_at', '>=', $startOfMonth)
+            ->select('analytic_code')
+            ->selectRaw('COUNT(*) as count')
+            ->selectRaw('SUM(distance_km) as distance')
+            ->groupBy('analytic_code')
+            ->get()
+            ->map(fn ($row) => [
+                'code' => $row->analytic_code,
+                'count' => (int) $row->count,
+                'distance' => round((float) $row->distance, 2),
+            ]);
+
+        return response()->json([
+            'month' => $now->format('Y-m'),
+            'routesThisMonth' => $routesThisMonth,
+            'distanceThisMonth' => round((float) $distanceThisMonth, 2),
+            'totalRoutes' => $totalRoutes,
+            'totalDistance' => round((float) $totalDistance, 2),
+            'distribution' => $distribution,
+        ]);
+    }
+
+    /**
      * Get aggregated distances by analytic code.
      * GET /api/v1/stats/distances
      */
