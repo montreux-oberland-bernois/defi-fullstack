@@ -76,8 +76,8 @@ docker compose exec backend php artisan test
 docker compose exec backend composer test:coverage
 
 # Frontend (Vitest)
-docker compose exec frontend npm test
-docker compose exec frontend npm run test:coverage
+docker compose exec frontend pnpm test
+docker compose exec frontend pnpm test:coverage
 ```
 
 ### Linting
@@ -88,8 +88,8 @@ docker compose exec backend composer lint
 docker compose exec backend composer phpstan
 
 # Frontend
-docker compose exec frontend npm run lint
-docker compose exec frontend npm run type-check
+docker compose exec frontend pnpm lint
+docker compose exec frontend pnpm type-check
 ```
 
 ### Artisan
@@ -98,10 +98,10 @@ docker compose exec frontend npm run type-check
 docker compose exec backend php artisan <command>
 ```
 
-### NPM
+### pnpm
 
 ```bash
-docker compose exec frontend npm <command>
+docker compose exec frontend pnpm <command>
 ```
 
 ## Architecture
