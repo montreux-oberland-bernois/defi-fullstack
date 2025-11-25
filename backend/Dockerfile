@@ -61,6 +61,10 @@ RUN composer install --no-scripts --no-autoloader --prefer-dist
 # Copy application code
 COPY . .
 
+# Create required directories
+RUN mkdir -p bootstrap/cache storage/app/public storage/framework/cache storage/framework/sessions storage/framework/views storage/logs \
+    && chmod -R 775 bootstrap/cache storage
+
 # Generate autoloader and run scripts
 RUN composer dump-autoload --optimize
 
