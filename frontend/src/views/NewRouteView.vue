@@ -83,6 +83,12 @@ const resetForm = () => {
 const goToRoutes = () => {
   router.push('/routes')
 }
+
+const swapStations = () => {
+  const temp = fromStationId.value
+  fromStationId.value = toStationId.value
+  toStationId.value = temp
+}
 </script>
 
 <template>
@@ -126,6 +132,21 @@ const goToRoutes = () => {
                 </v-list-item>
               </template>
             </v-autocomplete>
+
+            <div class="d-flex justify-center my-n2">
+              <v-btn
+                icon
+                variant="text"
+                size="small"
+                :disabled="!!calculatedRoute"
+                @click="swapStations"
+              >
+                <v-icon icon="mdi-swap-vertical" />
+                <v-tooltip activator="parent" location="end">
+                  Inverser les stations
+                </v-tooltip>
+              </v-btn>
+            </div>
 
             <v-autocomplete
               v-model="toStationId"
