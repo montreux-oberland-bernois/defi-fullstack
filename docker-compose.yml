@@ -1,0 +1,78 @@
+services:
+  pgdb:
+    image: postgres:16-alpine
+    container_name: train_routing_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: train_routing
+    # ports:
+    #   - "5432:5432"  # Comment out to avoid port conflicts in CI/ACT
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend_db_net # ONLY backend-db network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: train_routing_backend
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+      APP_SECRET: ${APP_SECRET:-your_secret_here}
+      DATABASE_URL: postgresql://postgres:postgres@pgdb:5432/train_routing
+    depends_on:
+      pgdb:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    networks:
+      - backend_db_net # DB communication
+      - app_network # Frontend/nginx access
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: train_routing_frontend
+    environment:
+      VITE_API_URL: /api/v1
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - app_network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: train_routing_nginx
+    ports:
+      - "8080:80"
+      - "8443:443"
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - app_network
+
+volumes:
+  db_data:
+
+networks:
+  app_network:
+    driver: bridge
+  backend_db_net: # Private backend-DB only
+    driver: bridge
