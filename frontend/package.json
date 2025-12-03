@@ -1,0 +1,47 @@
+{
+  "name": "train-routing-frontend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:docker": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest --coverage",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-pattern .gitignore",
+    "type-check": "vue-tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed"
+  },
+  "dependencies": {
+    "@mdi/js": "^7.4.47",
+    "axios": "^1.7.2",
+    "vue": "^3.4.29",
+    "vuetify": "^3.6.8"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^20.19.25",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "@vitest/coverage-v8": "^4.0.14",
+    "@vitest/ui": "^4.0.14",
+    "@vue/test-utils": "^2.4.6",
+    "@playwright/test": "^1.49.1",
+    "eslint": "^9.5.0",
+    "eslint-plugin-vue": "^9.30.0",
+    "jsdom": "^27.0.1",
+    "playwright": "^1.49.1",
+    "prettier": "^3.1.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^8.8.1",
+    "vite": "^6.0.0",
+    "vitest": "^4.0.14",
+    "vue-router": "^4.6.3",
+    "vue-tsc": "^2.0.21"
+  }
+}
