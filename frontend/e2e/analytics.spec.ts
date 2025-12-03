@@ -45,6 +45,8 @@ test.describe('Analytics page', () => {
     await page.locator('.v-select').filter({ hasText: 'To Station' }).click()
     await page.keyboard.type('BLON')
     await page.keyboard.press('Enter')
+    await page.keyboard.press('Escape')
+    await page.waitForTimeout(200) // Wait for Vuetify overlay to fully close
 
     // Click calculate
     await page.getByRole('button', { name: /calculate/i }).click()
