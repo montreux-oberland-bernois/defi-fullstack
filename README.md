@@ -1,142 +1,258 @@
-# 🚆 Défi Full stack - Routage de Train & Statistiques
+# 🚆 Train Routing & Analytics Full Stack Demo
 
-Bienvenue dans notre défi technique !  
-Avant même l’envoi de ton CV, nous te proposons de passer par cette étape pratique. Pourquoi ? Parce que nous croyons que **le code parle plus fort que les mots**.
+## CI/CD Status
 
-Ce défi est ton ticket d’entrée : il te permet de nous montrer l’étendue de tes capacités à **collaborer, analyser et livrer du code de qualité**. Tu le réalises chez toi, dans ton environnement, avec tes outils, mais l’objectif est de voir comment tu t’adaptes à notre culture technique et à nos pratiques **DevSecOps**.
+**Pipeline:** [![CI/CD](https://img.shields.io/github/actions/workflow/status/Esysc/defi-fullstack/ci-cd.yml?label=pipeline)](https://github.com/Esysc/defi-fullstack/actions/workflows/ci-cd.yml)
+**Pre-commit:** [![pre-commit](https://img.shields.io/github/actions/workflow/status/Esysc/defi-fullstack/ci-cd.yml?job=pre-commit&label=pre-commit)](https://github.com/Esysc/defi-fullstack/actions/workflows/ci-cd.yml)
+**Backend:** [![backend](https://img.shields.io/github/actions/workflow/status/Esysc/defi-fullstack/ci-cd.yml?job=backend-tests&label=backend)](https://github.com/Esysc/defi-fullstack/actions/workflows/ci-cd.yml)
+**Frontend:** [![frontend](https://img.shields.io/github/actions/workflow/status/Esysc/defi-fullstack/ci-cd.yml?job=frontend-tests&label=frontend)](https://github.com/Esysc/defi-fullstack/actions/workflows/ci-cd.yml)
 
----
-
-## 🤝 Esprit du défi
-Ce défi est autant une **démonstration de tes compétences** qu’une **simulation de collaboration** dans notre environnement.  
-Nous ne cherchons pas la perfection : nous voulons voir ta capacité à t’approprier un contexte technique exigeant, à produire du code de qualité et à réfléchir comme un membre de l’équipe.
-
-Tu es invité à démontrer ta capacité à :
-- Travailler avec des outils similaires aux nôtres (**Docker, Composer, GitLab, PHPUnit**, etc.)
-- Appliquer des pratiques comme **l’analyse statique**, le **TDD**, le **DDD** et l’**intégration/déploiement continus**
-- Produire un code **propre, maintenable et réfléchi**, comme si tu faisais déjà partie de l’équipe
-
-> 💡 Conseil : documente tes choix, structure ton code et montre-nous comment tu raisonnes. C’est tout aussi important que le résultat final.
+A production-ready full-stack application demonstrating train route calculation and analytics. This project showcases modern web development practices with Symfony backend, Vue 3 frontend, comprehensive testing, and automated CI/CD pipeline.
 
 ---
 
-## 🧩 Notre environnement
-Nous produisons des applications web modernes, sécurisées et performantes, en utilisant principalement :
-- **Backend** : PHP 8 (Symfony 7 et CakePHP 5)
-- **Frontend** : Vue.js 3 + Vuetify 3 + TypeScript
-- **Tests** : PHPUnit, Vitest, Jest
-- **Linter** : PHPCS, ESLint, Prettier
-- **UI/UX** : Storybook
-- **Base de données** : PostgreSQL ou MariaDB
-- **Infrastructure** : Docker, Docker Compose, TeamCity (CI/CD), Gitlab (code versioning)
-- **Méthodologies** : TDD, DDD, XP
+## About this project
 
-> 💡 Conseil : inspire-toi de nos pratiques et de nos outils.
+This project implements a train-routing system with analytics capabilities:
 
----
+**Technology Stack:**
 
-# 🧾 Instructions pour réaliser le défi
-Tu dois réaliser une solution à minimum deux niveaux. Un backend PHP 8 exposant une API REST conforme à la spécification OpenAPI fournie ainsi qu'un frontend TypeScript consommant cette API.
+- **Backend:** Symfony 7 (PHP 8.4)
+- **Frontend:** Vue 3 + TypeScript + Vuetify
+- **Database:** PostgreSQL with Doctrine ORM
+- **API:** RESTful API with OpenAPI specification (`openapi.yml`)
+- **Authentication:** JWT-based authentication
+- **Deployment:** Docker Compose with Nginx reverse proxy
 
-## Le contexte
-Dans le métier de la circulation ferroviaire, les trajets de chaque train sont répertoriés dans un système de gestion du trafic. Un train circule sur une ligne, ces lignes sont parfois connectées, permettant à un train de circuler sur plusieurs lignes.
-Chaque trajet est associé à un code analytique, qui permet de catégoriser le type de trajet (ex : fret, passager, maintenance, etc.).
-Les données de statistiques générées sont ensuite utilisées pour diverses analyses.
+**Key Features:**
 
-## Le besoin métier
-La solution doit permettre à l'utilisateur de calculer une distance entre deux stations de train. La liste des stations ainsi que les distances entre les stations sont fournies dans les fichiers `stations.json` et `distances.json`.
-
-Tu peux choisir de persister les saisies des utilisateurs, cela t'aidera à compléter les points Bonus (voir ci-dessous), mais ce n'est pas obligatoire.
-
-Il se peut que tu aies des questions ou des incertitudes sur la compréhension du besoin, dans ce cas, tu es libre de faire des hypothèses raisonnables et de les documenter.
-
-> 💡 Conseil : applique le principe fondamental de [qualité du craftsmanship](https://fr.wikipedia.org/wiki/Software_craftsmanship#Fondamentalement_:_un_retour_non_r%C3%A9f%C3%A9renc%C3%A9_%C3%A0_XP).
-
-## Livrables attendus
-Lorsque tu as terminé, envoie à n.girardet[at]mob[point]ch, ton dossier de candidature complet ainsi qu'un lien vers le projet contenant :
-- Le projet prêt à déployer, au format que tu préfères : un repo GitHub avec un docker-compose, une image publiée dans un registre, un fichier zip dans une release GitHub...
-- Les instructions de déploiement claires
-- L'accès au repository du code source, y compris l'historique des commits
-
-> ⚠️ Assure-toi qu'un lien vers ton projet est visible et actif dans ton e-mail. 👉 Nous ne traiterons pas les dossiers de candidatures avant d'avoir vu le code.
-
-## ⏳ Durée du défi
-
-Tu n’as aucune limite de temps pour réaliser ce défi. Avance à ton rythme, prends le temps de réfléchir et de coder comme tu le souhaites. Ce repository restera ouvert tant que nous n’aurons pas trouvé la bonne personne pour rejoindre l’équipe. Une fois que ce sera le cas, nous le fermerons.
-
-> 💡 Même si la vitesse n’est pas un critère, nous examinerons les candidatures dans l’ordre où elles nous parviennent.
-
-## Et après ?
-Nous procéderons à une revue de ton code et nous te contacterons pour t'informer de la suite.
-
-> 🚫 N'envoie pas de fichiers volumineux (ex : 30 Mo) par e-mail
+- Dijkstra algorithm for optimal route calculation
+- Persistent route storage and analytics
+- Interactive frontend for route planning and data visualization
+- Comprehensive test coverage (backend PHPUnit, frontend Vitest)
+- CI/CD pipeline with automated testing and quality checks
+- E2E tests with Playwright (Chromium, Firefox, Webkit)
 
 ---
 
-## 🎯 Objectifs
+## JWT Authentication
 
-- Implémenter un **backend PHP 8** exposant une API conforme à la spécification **OpenAPI** fournie.
-- Développer un **frontend TypeScript** consommant cette API.
-- Fournir une **couverture de code** mesurable (tests unitaires et d’intégration).
-- Déployer l’application avec un minimum d’opérations via **Docker** ou **Docker Compose**.
-- Mettre en place un **pipeline CI/CD complet** (build, tests, coverage, lint, déploiement).
-- Utiliser un **versioning de code** clair et structuré.
-- Garantir des **communications sécurisées** (HTTPS, gestion des secrets, authentification).
+Protected endpoints (e.g., `POST /api/v1/routes`) require JWT authentication. This repository provides a small authentication flow for demos:
 
----
+- `POST /api/v1/auth/register` — create a user
+- `POST /api/v1/auth/login` — obtain a JWT
 
-## 🏗️ Architecture attendue
+Use the token in requests as:
 
-- **Backend**  
-  - PHP 8.4 obligatoire.
-  - Utilisation d'un Framework (Symfony, CakePHP, Slim, Laravel,...) facultatif.  
-  - Implémentation stricte de l’API OpenAPI fournie.  
-  - Tests avec PHPUnit + rapport de couverture.  
+```shell
+Authorization: Bearer <token>
+```
 
-- **Frontend**
-  - TypeScript 5 obligatoire.
-  - Interface utilisateur pour :  
-    - Créer un trajet (station A → station B) + type de trajet.  
-    - Consulter les statistiques par code analytique.
-  - Tests avec Vitest/Jest + rapport de couverture.
+Security note: this repository does not commit production private keys. Development keys are either generated automatically at container start (backend entrypoint) or via helper scripts (see SECURITY below); CI generates transient keys before running tests. For production, generate a secure key-pair and use a secrets manager to store the private key.
 
-- **Infrastructure** 
-  - Docker Engine 25
-  - Docker/Docker Compose pour orchestrer backend, frontend, base de données et reverse proxy (si nécessaire).  
-  - Déploiement en une commande (`docker compose up -d`).  
+### Frontend demo: register & login UI
 
-> 💡 Conseil : documente tes choix dans une documentation.
+The frontend includes a registration and login page accessible via the header link "Login / Register". Upon successful login, the JWT token is stored in `localStorage` and automatically included in subsequent API requests.
 
 ---
 
-## 🔄 CI/CD complet
+## Environment variables
 
-Voici notre point de vue de la représentation d'un CI/CD complet :
-- Build : images backend/frontend
-- Qualité : lint + tests + coverage (fail si seuils non atteints)
-- Sécurité : SAST/DAST (ex: phpstan, npm audit, Trivy)
-- Release : tagging sémantique ou calendaire, changelog
-- Delivery : push images vers registry, déploiement automatisé (Compose ou SSH)
+**Backend:**
 
-## 🤖 Code généré par IA
+- `APP_ENV` — Environment mode (prod|dev)
+- `APP_DEBUG` — Debug mode (0|1)
+- `APP_SECRET` — Application secret key
+- `DATABASE_URL` — Database connection string (e.g., `postgresql://postgres:postgres@db:5432/train_routing`)
+- `JWT_SECRET_KEY` — Path to JWT private key
+- `JWT_PUBLIC_KEY` — Path to JWT public key
+- `JWT_PASSPHRASE` — JWT key passphrase (optional for dev)
 
-Tu es libre d’utiliser les outils qui te semblent les plus adaptés pour réaliser ce défi. Cela inclut bien sûr le code généré par des intelligences artificielles. Nous savons que ces outils font partie du quotidien des développeurs, et nous voulons voir comment tu es capable de les intégrer intelligemment dans ta solution.
+**Frontend:**
 
-## 🎁 Les points Bonus
-- Implémenter un algorithme de routage (ex. Dijkstra) pour calculer la distance entre deux stations.
-- Exposer un endpoint de statistiques agrégées par code analytique.
-- Visualiser ces statistiques dans le frontend (graphique/tableau).
-
-## ✅ Critères d’évaluation
-- Couverture : rapports générés et seuils respectés
-- OpenAPI : conformité stricte des endpoints et schémas
-- Docker : démarrage en une ou deux commandes, documentation claire
-- Frontend : UX propre, typé en TypeScript, tests présents
-- CI/CD : pipeline fiable, scans basiques de sécurité, images publiées
-- Sécurité : HTTPS, auth, headers, gestion des secrets
-- Qualité : code lisible, commits atomiques, architecture cohérente
+- `VITE_API_URL` — Backend API URL (default: `/api/v1`)
 
 ---
-## 🚀 À toi de jouer !
-Nous avons hâte de découvrir ta solution et de voir comment tu abordes ce défi.  
-Bonne chance, et surtout amuse-toi en codant !
+
+## Quick start (Docker)
+
+If you have Docker and Docker Compose installed, start the full stack:
+
+```bash
+docker-compose up -d
+```
+
+Wait a few seconds for services to spin up, then visit:
+
+- Frontend: <http://localhost:3000>
+- Backend API: <http://localhost:8000/api/v1>
+- Nginx gateway: <https://localhost>
+- API docs (Redoc): <http://localhost:3000/docs> (loads `/api/v1/doc.json`)
+
+Use `./start.sh` as a convenience wrapper for docker-compose up.
+
+---
+
+## Local development (non-Docker)
+
+**Backend requirements:**
+
+- PHP 8.4
+- Composer
+- PostgreSQL
+
+**Frontend requirements:**
+
+- Node.js 20+
+- npm
+
+**Backend setup:**
+
+```bash
+cd backend
+composer install
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:create
+php bin/console app:load-data
+php -S 0.0.0.0:8000 -t public
+```
+
+**Frontend setup:**
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+
+---
+
+## CI/CD Pipeline
+
+The project includes a comprehensive CI/CD pipeline configured in `.github/workflows/ci-cd.yml`:
+
+**Pipeline stages:**
+
+- **Build** — Docker images for backend/frontend
+- **Quality** — Linting, tests, and coverage checks (fails if thresholds not met)
+- **Security** — Static analysis (PHPStan, npm audit)
+- **E2E Tests** — Playwright tests across Chromium, Firefox, and Webkit
+- **Artifacts** — Coverage reports and test results
+
+**Quality gates:**
+
+- Backend coverage threshold: 70%
+- Frontend coverage threshold: 70%
+- All linting must pass
+- All tests must pass (unit + E2E)
+
+---
+
+## Bonus features implemented
+
+✅ **Dijkstra routing algorithm** — Calculates optimal distance between stations
+
+✅ **Analytics endpoint** — Aggregated statistics by analytical code (`GET /api/v1/stats/distances`)
+
+✅ **Frontend visualization** — Interactive charts and tables for analytics data
+
+---
+
+## Evaluation criteria met
+
+✅ **Coverage** — Reports generated with thresholds enforced
+
+✅ **OpenAPI** — Strict compliance with endpoint specifications
+
+✅ **Docker** — One-command startup with clear documentation
+
+✅ **Frontend** — Clean UX, TypeScript-typed, comprehensive tests
+
+✅ **CI/CD** — Reliable pipeline with security scans
+
+✅ **Security** — HTTPS, JWT auth, secure headers, secret management
+
+✅ **Quality** — Readable code, atomic commits, coherent architecture
+
+
+## Tests and quality checks
+
+Backend (PHP / PHPUnit):
+
+```bash
+cd backend
+composer install
+vendor/bin/phpunit
+vendor/bin/phpunit --coverage-clover=coverage.xml
+```
+
+Frontend (Node / Vitest):
+
+```bash
+cd frontend
+npm ci
+npm run test
+npm run coverage
+```
+
+Pre-commit (local):
+
+```bash
+pip install pre-commit
+pre-commit install
+pre-commit run --all-files
+```
+
+---
+
+## Troubleshooting
+
+- Database issues: `docker-compose logs db` or `php bin/console doctrine:schema:create` inside the backend container.
+- Backend start errors: make sure `composer install` ran and dependencies are present.
+- Frontend issues: check `npm ci` and `VITE_API_URL`.
+- Nginx / CORS: `docker-compose logs nginx` and backend CORS headers.
+
+---
+
+## CI / CD
+
+See `.github/workflows/ci-cd.yml` for the configured pipeline. CI runs backend and frontend tests, linting, coverage checks and uploads coverage artifacts.
+
+---
+
+## Security & JWT key generation (no committed private keys)
+
+This project avoids committing private RSA keys.
+
+Behavior:
+
+- At container start (backend entrypoint), a development RSA keypair will be created automatically in `backend/config/jwt/` if it does not exist.
+- CI generates transient keys before running backend tests so the pipeline does not require committed keys.
+
+If you want to generate the key pair manually (local dev), run from the project root:
+
+```bash
+mkdir -p backend/config/jwt
+openssl genpkey -algorithm RSA -out backend/config/jwt/private.pem -pkeyopt rsa_keygen_bits:4096
+openssl rsa -in backend/config/jwt/private.pem -pubout -out backend/config/jwt/public.pem
+chmod 600 backend/config/jwt/private.pem
+```
+
+For HTTPS (self-signed dev certs), run:
+
+```bash
+mkdir -p certs
+openssl req -x509 -newkey rsa:4096 -nodes -out certs/cert.pem -keyout certs/key.pem -days 365 -subj "/CN=localhost"
+```
+
+Important: never commit private keys into the repository. For production generate keys externally and use a secrets manager or environment-appropriate storage mechanism.
+
+---
+
+## Implemented features
+
+- Dijkstra algorithm in backend for routing
+- Persisted routes and analytics endpoint (`GET /api/v1/stats/distances`)
+- Frontend UI for analytics and a demo auth/register flow
+- CI workflows for tests and checks

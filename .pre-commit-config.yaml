@@ -1,0 +1,36 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+
+  # Use local/system hooks to run php syntax checks and PHP CS Fixer (when available)
+  - repo: local
+    hooks:
+      - id: php-syntax
+        name: PHP syntax check
+        entry: bash -c 'for f in "$@"; do php -l "$f" || exit 1; done' --
+        language: system
+        files: '\.php$'
+
+      - id: php-cs-fixer
+        name: PHP CS Fixer (backend/vendor/bin/php-cs-fixer)
+        entry: bash -c 'if [ -x backend/vendor/bin/php-cs-fixer ]; then backend/vendor/bin/php-cs-fixer fix --config=backend/.php-cs-fixer.php --using-cache=no "$@"; else echo "php-cs-fixer not found, skip"; fi' --
+        language: system
+        files: '\.php$'
+
+      - id: prettier-format
+        name: Prettier (format JS/TS/Vue/JSON/YAML)
+        entry: bash -c 'if command -v npx >/dev/null 2>&1; then npx --yes --prefix frontend prettier --write "$@" || npx --yes prettier --write "$@"; else echo "npx not found, skipping prettier"; fi' --
+        language: system
+        files: '\.(js|jsx|ts|tsx|vue|json|ya?ml)$'
+
+      - id: eslint-frontend
+        name: ESLint (frontend)
+        entry: bash -c 'if [ -f frontend/package.json ]; then npm --prefix frontend run lint --silent -- "$@" || true; else echo "frontend package.json not found -> skipping eslint"; fi' --
+        language: system
+        files: '\.(js|jsx|ts|tsx|vue)$'
