@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   packages: write
+  security-events: write
 
 jobs:
   release:
@@ -74,8 +75,8 @@ jobs:
           images: ghcr.io/${{ github.repository }}/backend
           tags: |
             type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}},enable=${{ !contains(github.ref, '-') }}
+            type=semver,pattern={{major}},enable=${{ !contains(github.ref, '-') }}
             type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push backend image
@@ -84,10 +85,27 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile
           push: true
+          load: true
           tags: ${{ steps.meta-backend.outputs.tags }}
           labels: ${{ steps.meta-backend.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Run Trivy security scan on backend image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ fromJSON(steps.meta-backend.outputs.json).tags[0] }}
+          format: "sarif"
+          output: "trivy-backend-results.sarif"
+          severity: "CRITICAL,HIGH"
+        continue-on-error: true
+
+      - name: Upload Trivy backend results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-backend-results.sarif') != ''
+        with:
+          sarif_file: "trivy-backend-results.sarif"
+          category: "trivy-backend"
 
       - name: Extract metadata for frontend
         id: meta-frontend
@@ -96,8 +114,8 @@ jobs:
           images: ghcr.io/${{ github.repository }}/frontend
           tags: |
             type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}},enable=${{ !contains(github.ref, '-') }}
+            type=semver,pattern={{major}},enable=${{ !contains(github.ref, '-') }}
             type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push frontend image
@@ -106,10 +124,27 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
+          load: true
           tags: ${{ steps.meta-frontend.outputs.tags }}
           labels: ${{ steps.meta-frontend.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Run Trivy security scan on frontend image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ fromJSON(steps.meta-frontend.outputs.json).tags[0] }}
+          format: "sarif"
+          output: "trivy-frontend-results.sarif"
+          severity: "CRITICAL,HIGH"
+        continue-on-error: true
+
+      - name: Upload Trivy frontend results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-frontend-results.sarif') != ''
+        with:
+          sarif_file: "trivy-frontend-results.sarif"
+          category: "trivy-frontend"
 
       - name: Extract metadata for nginx
         id: meta-nginx
@@ -118,8 +153,8 @@ jobs:
           images: ghcr.io/${{ github.repository }}/nginx
           tags: |
             type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=semver,pattern={{major}}.{{minor}},enable=${{ !contains(github.ref, '-') }}
+            type=semver,pattern={{major}},enable=${{ !contains(github.ref, '-') }}
             type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and push nginx image
@@ -128,7 +163,24 @@ jobs:
           context: ./nginx
           file: ./nginx/Dockerfile
           push: true
+          load: true
           tags: ${{ steps.meta-nginx.outputs.tags }}
           labels: ${{ steps.meta-nginx.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      - name: Run Trivy security scan on nginx image
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ fromJSON(steps.meta-nginx.outputs.json).tags[0] }}
+          format: "sarif"
+          output: "trivy-nginx-results.sarif"
+          severity: "CRITICAL,HIGH"
+        continue-on-error: true
+
+      - name: Upload Trivy nginx results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v3
+        if: always() && hashFiles('trivy-nginx-results.sarif') != ''
+        with:
+          sarif_file: "trivy-nginx-results.sarif"
+          category: "trivy-nginx"
