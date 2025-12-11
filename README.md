@@ -1,5 +1,10 @@
 # 🚆 Défi Full stack - Routage de Train & Statistiques
 
+> ⚠️ **Information importante**  
+> Ce défi est désormais **terminé**.  
+> Nous avons trouvé la personne qui rejoint notre équipe et nous ne traitons plus de nouvelles candidatures.  
+> Merci à toutes celles et ceux qui ont participé !
+> 
 Bienvenue dans notre défi technique !  
 Avant même l’envoi de ton CV, nous te proposons de passer par cette étape pratique. Pourquoi ? Parce que nous croyons que **le code parle plus fort que les mots**.
 
